@@ -1,0 +1,47 @@
+{
+  "name": "fe-nametbd",
+  "version": "0.0.1",
+  "description": "Front End Application For nametbd ",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js --mode development",
+    "build": "NODE_ENV=production webpack",
+    "test": "echo \"No test specified\" && exit 0"
+  },
+  "keywords": [],
+  "author": "nametbd",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@tophat/eslint-config": "^0.1.4",
+    "babel-eslint": "^10.0.3",
+    "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.16.0",
+    "html-webpack-plugin": "^3.2.0",
+    "prettier": "^1.18.2",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
+  },
+  "dependencies": {
+    "core-js": "^3.3.5",
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.1.2",
+    "redux": "^4.0.4",
+    "redux-devtools-extension": "^2.13.8",
+    "redux-saga": "^1.1.1",
+    "regenerator-runtime": "^0.13.3",
+    "reselect": "^4.0.0",
+    "styled-components": "^4.4.0"
+  }
+}

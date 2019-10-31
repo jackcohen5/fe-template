@@ -1,7 +1,4 @@
 module.exports = {
     "parser": "babel-eslint",
-    "extends": [
-        '@tophat',
-        "plugin:react/recommended"
-    ]
+    "extends": ['@tophat', '@tophat/eslint-config/react']
 }

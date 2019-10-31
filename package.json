@@ -6,11 +6,18 @@
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js --mode development",
     "build": "NODE_ENV=production webpack",
+    "flint": "eslint --ext .js src/ --fix",
+    "lint": "eslint --ext .js src",
     "test": "echo \"No test specified\" && exit 0"
   },
   "keywords": [],
   "author": "nametbd",
   "private": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@babel/preset-env": "^7.6.3",
@@ -21,9 +28,11 @@
     "clean-webpack-plugin": "^3.0.0",
     "eslint": "^6.6.0",
     "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-react": "^7.16.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^3.0.9",
     "prettier": "^1.18.2",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",

@@ -1,0 +1,11 @@
+{
+  "verbose": true,
+  "moduleDirectories": ["node_modules", "<rootDir>"],
+  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "transform": {
+    "^.+\\.[t|j]sx?$": "babel-jest"
+  },
+  "setupFilesAfterEnv": [
+    "<rootDir>config/setupTests.js"
+  ]
+}

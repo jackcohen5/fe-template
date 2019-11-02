@@ -8,24 +8,25 @@ import {
     exampleAction,
     hasTriggeredExampleSelector,
 } from 'src/flux/ducks/example'
-import { AppContainer } from './App.styles'
 
-const App = ({ hasTriggeredExample, exampleAction }) => (
+import { AppButton, AppContainer } from './App.styles'
+
+export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
     <>
         <Navbar title="nametbd" />
         <AppContainer>
             Congrats, you started up nametbd.
             <br />
-            Example has {!hasTriggeredExample && 'NOT'} been triggered.
+            Example has {!hasTriggeredExample && 'NOT '}been triggered.
             <br />
-            <button onClick={() => exampleAction()} type="button">
+            <AppButton onClick={() => exampleAction()} type="button">
                 Trigger Example Action
-            </button>
+            </AppButton>
         </AppContainer>
     </>
 )
 
-App.propTypes = {
+UnwrappedApp.propTypes = {
     exampleAction: PropTypes.func.isRequired,
     hasTriggeredExample: PropTypes.bool.isRequired,
 }
@@ -41,4 +42,4 @@ const mapDispatchToProps = {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(App)
+)(UnwrappedApp)

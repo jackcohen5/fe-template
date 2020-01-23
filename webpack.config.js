@@ -51,5 +51,11 @@ module.exports = {
         contentBase: BUILD_DIR,
         port: 3000,
         hot: true,
+        proxy: {
+            '/': {
+                target: 'http://localhost:8080',
+                secure: false,
+            },
+        },
     },
 }

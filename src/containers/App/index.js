@@ -39,7 +39,4 @@ const mapDispatchToProps = {
     exampleAction,
 }
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
-)(UnwrappedApp)
+export default connect(mapStateToProps, mapDispatchToProps)(UnwrappedApp)

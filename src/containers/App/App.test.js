@@ -1,10 +1,11 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 
+import Button from 'src/components/Button'
 import Navbar from 'src/components/Navbar'
 
 import { UnwrappedApp as App } from '.'
-import { AppButton, AppContainer } from './App.styles'
+import { AppContainer } from './App.styles'
 
 const defaultProps = {
     hasTriggeredExample: false,
@@ -40,7 +41,7 @@ describe('App', () => {
         const wrapper = renderComponent({
             exampleAction: exampleActionSpy,
         })
-        wrapper.find(AppButton).simulate('click')
+        wrapper.find(Button).simulate('click')
         expect(exampleActionSpy).toHaveBeenCalled()
     })
 })

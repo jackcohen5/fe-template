@@ -10,6 +10,7 @@ import { FontFamily } from 'src/constants/Typography'
 import routes from 'src/routes'
 import configureStore from 'src/flux/store'
 import App from 'src/containers/App'
+import ProtectedApp from 'src/containers/ProtectedApp'
 
 const store = configureStore()
 
@@ -19,6 +20,11 @@ ReactDOM.render(
             <Router>
                 <Switch>
                     <Route exact path={routes.HOME} component={App} />
+                    <Route
+                        exact
+                        path={routes.PROTECTED_HOME}
+                        component={ProtectedApp}
+                    />
                 </Switch>
             </Router>
         </Provider>

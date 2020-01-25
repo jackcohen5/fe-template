@@ -1,15 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
+import Button from 'src/components/Button'
 import Navbar from 'src/components/Navbar'
+import routes from 'src/routes'
 
 import {
     exampleAction,
     hasTriggeredExampleSelector,
 } from 'src/flux/ducks/example'
 
-import { AppButton, AppContainer } from './App.styles'
+import { AppContainer } from './App.styles'
 
 export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
     <>
@@ -19,9 +22,11 @@ export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
             <br />
             Example has {!hasTriggeredExample && 'NOT '}been triggered.
             <br />
-            <AppButton onClick={() => exampleAction()} type="button">
+            <Button onClick={() => exampleAction()} type="button">
                 Trigger Example Action
-            </AppButton>
+            </Button>
+            <br />
+            <Link to={routes.PROTECTED_HOME}>Go to private App</Link>
         </AppContainer>
     </>
 )

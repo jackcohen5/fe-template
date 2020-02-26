@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { Typography } from 'components/Branding'
+
 export const AppContainer = styled.div`
     width: 100%;
     height: 100%;
@@ -11,7 +13,7 @@ export const AppContainer = styled.div`
 `
 
 export const WelcomeMessage = styled.div`
-    font-size: 16px;
+    font-size: ${Typography.FontSize.MD}px;
 `
 
 export const LoginButtonContainer = styled.div`

@@ -25,5 +25,5 @@ export const TextContainer = styled.div`
     flex-direction: column;
     text-align: center;
 
-    font-size: ${FontSize.Large};
+    font-size: ${FontSize.LG};
 `

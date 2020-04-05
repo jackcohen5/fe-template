@@ -1,8 +1,8 @@
 // import { createSelector } from 'reselect'
 
-const exampleStoreSelector = state => state.example
+const exampleStoreSelector = (state) => state.example
 
-export const hasTriggeredExampleSelector = state =>
+export const hasTriggeredExampleSelector = (state) =>
     exampleStoreSelector(state).get('hasTriggeredExample')
 
 // export const memoizedSelector = createSelector(

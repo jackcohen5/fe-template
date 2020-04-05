@@ -26,7 +26,7 @@ export const reducer = (state = initialState, action) => {
         case LOGIN:
             return state.set('authState', AuthState.LOGGING_IN)
         case LOGIN_SUCCESS:
-            return state.withMutations(s =>
+            return state.withMutations((s) =>
                 s
                     .set('authState', AuthState.LOGGED_IN)
                     .set('isCheckingLogin', false)

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const getColor = color => {
+const getColor = (color) => {
     switch (color) {
         case 'danger':
             return 'rgb(158, 26, 26)'

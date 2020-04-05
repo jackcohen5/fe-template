@@ -36,7 +36,7 @@ UnwrappedApp.propTypes = {
     hasTriggeredExample: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     hasTriggeredExample: hasTriggeredExampleSelector(state),
 })
 

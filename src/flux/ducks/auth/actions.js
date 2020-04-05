@@ -1,4 +1,4 @@
-const ns = action => `auth/${action}`
+const ns = (action) => `auth/${action}`
 
 export const CHECKING_LOGIN = ns`CHECKING_LOGIN`
 
@@ -14,7 +14,7 @@ export const LOGOUT_FAILED = ns`LOGOUT_FAILED`
 
 export const checkingLogin = () => ({ type: CHECKING_LOGIN })
 
-export const signUp = role => ({
+export const signUp = (role) => ({
     type: SIGN_UP,
     payload: { role },
 })

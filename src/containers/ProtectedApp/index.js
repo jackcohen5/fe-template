@@ -89,7 +89,7 @@ UnwrappedProtectedApp.propTypes = {
     signUp: PropTypes.func.isRequired,
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isCheckingLogin: isCheckingLoginSelector(state),
     isLoggedIn: isLoggedInSelector(state),
     isVerified: isVerifiedSelector(state),

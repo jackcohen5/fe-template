@@ -1,4 +1,4 @@
-const ns = action => `example/${action}`
+const ns = (action) => `example/${action}`
 
 export const EXAMPLE_ACTION = ns`EXAMPLE_ACTION`
 

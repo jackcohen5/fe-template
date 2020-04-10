@@ -52,7 +52,7 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
-    "auth0-lock": "^11.22.4",
+    "auth0-lock": "^11.23.0",
     "core-js": "^3.3.5",
     "immutable": "^4.0.0-rc.12",
     "prop-types": "^15.7.2",

@@ -1,2 +1,9 @@
+# App
+
+.env
 node_modules/
 .dist/
+
+# MacOS
+
+.DS_Store

@@ -1916,10 +1916,10 @@ auth0-js@^9.13.3:
     url-join "^4.0.1"
     winchan "^0.2.2"
 
-auth0-lock@^11.26.2:
-  version "11.26.2"
-  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.26.2.tgz#f3f89a04cf45715be17900fd9bf3b1f0f673693b"
-  integrity sha512-az4LTNp06TX6Jt16rKBjpftmmJXMlVf0jMyiX2vxSY7ukqY8gSPFfVIAkwLlFcaQeidMBYp0rq6Ou1QrQf1EsQ==
+auth0-lock@^11.26.3:
+  version "11.26.3"
+  resolved "https://registry.yarnpkg.com/auth0-lock/-/auth0-lock-11.26.3.tgz#9aee4b434298ce38f5811741349a2187f8be7fa7"
+  integrity sha512-jjl4X2/l3NPy4v+CTlircReUnlp8M2jP3j3ijFhYc4t/JrNpAQ3gFlvuzIigy0Uj6me0g7m8NBf8TUu0mFY2/w==
   dependencies:
     auth0-js "^9.13.3"
     auth0-password-policies "^1.0.2"

@@ -1,6 +1,6 @@
 import { delay, takeEvery } from 'redux-saga/effects'
 
-import { EXAMPLE_ACTION } from './actions'
+import { exampleAction } from '.'
 
 export function* hasTriggeredExampleSaga() {
     yield delay(1000)
@@ -8,5 +8,5 @@ export function* hasTriggeredExampleSaga() {
 }
 
 export default function* exampleWatcherSaga() {
-    yield takeEvery(EXAMPLE_ACTION, hasTriggeredExampleSaga)
+    yield takeEvery(exampleAction, hasTriggeredExampleSaga)
 }

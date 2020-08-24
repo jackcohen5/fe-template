@@ -57,13 +57,13 @@ export const UnwrappedProtectedApp = ({
                         Login
                     </Button>
                     <Button
-                        onClick={() => signUp(Roles.nametbd_ROLE1)}
+                        onClick={() => signUp({ role: Roles.nametbd_ROLE1 })}
                         type="button"
                     >
                         Sign Up as nametbd_ROLE1
                     </Button>
                     <Button
-                        onClick={() => signUp(Roles.nametbd_ROLE2)}
+                        onClick={() => signUp({ role: Roles.nametbd_ROLE2 })}
                         type="button"
                     >
                         Sign Up as nametbd_ROLE2

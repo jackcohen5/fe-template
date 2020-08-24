@@ -1,16 +1,16 @@
 import { call, put, spawn, takeEvery } from 'redux-saga/effects'
 
+import { getAuthLock, ROLE_CLAIM_KEY, Roles } from './auth.constants'
 import {
     checkingLogin,
-    LOGIN,
+    login,
     loginSuccess,
     loginFailed,
-    LOGOUT,
+    logout,
     logoutSuccess,
     logoutFailed,
-    SIGN_UP,
-} from './actions'
-import { getAuthLock, ROLE_CLAIM_KEY, Roles } from './auth.constants'
+    signUp,
+} from '.'
 
 let AuthLock
 
@@ -66,15 +66,15 @@ export function* logoutSaga() {
 export default function* authWatcherSaga() {
     AuthLock = getAuthLock()
 
-    yield takeEvery(SIGN_UP, loginSaga, {
+    yield takeEvery(signUp, loginSaga, {
         initialScreen: 'signUp',
         allowLogin: false,
     })
-    yield takeEvery(LOGIN, loginSaga, {
+    yield takeEvery(login, loginSaga, {
         initialScreen: 'login',
         rememberLastLogin: true,
         allowSignUp: false,
     })
-    yield takeEvery(LOGOUT, logoutSaga)
+    yield takeEvery(logout, logoutSaga)
     yield spawn(checkLoginSaga)
 }

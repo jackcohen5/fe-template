@@ -1,4 +1,14 @@
 export * from './auth.constants'
-export * from './actions'
-export * from './reducer'
+import slice from './slice'
+export const reducer = slice.reducer
+export const {
+    checkingLogin,
+    signUp,
+    login,
+    loginSuccess,
+    loginFailed,
+    logout,
+    logoutSuccess,
+    logoutFailed,
+} = slice.actions
 export * from './selectors'

@@ -1,31 +1,37 @@
-# Global settings applied to the whole site.
-# “base” is directory to change to before starting build, and
-# “publish” is the directory to publish (relative to root of your repo).
-# “command” is your build command.
-
+# Default
 [build]
-  base    = ""
   publish = ".dist"
-  command = "NODE_ENV=development yarn build"
+  command = "node ./scripts/netlifyEnv.js && yarn build"
 
-# Production context: All deploys to the main
-# repository branch will inherit these settings.
-[context.production]
-  command = "NODE_ENV=production yarn build"
+# Asset Optimization
+[build.processing]
+  skip_processing = false
+[build.processing.css]
+  bundle = true
+  minify = true
+[build.processing.js]
+  bundle = true
+  minify = true
+[build.processing.html]
+  pretty_urls = true
+[build.processing.images]
+  compress = true
 
-# Branch Deploy context: All deploys that are not in
-# an active Deploy Preview will inherit these settings.
-[context.branch-deploy]
-  command = "NODE_ENV=staging yarn build"
+# Production
+[context.production.environment]
+  API_LOCATION = "https://path.to.production.api.com/production/api/:splat"
+
+# Staging
+[context.staging.environment]
+  API_LOCATION = "https://path.to.staging.api.com/staging/api/:splat"
 
 # API
 [[redirects]]
   from    = "/api/*"
-  to      = "http://path.to.api.com/api/:splat"
+  to      = "API_REDIRECT"
   status  = 200
 
-# Always redirect any request to our index.html
-# and return the status code 200.
+# SPA
 [[redirects]]
   from    = "/*"
   to      = "/index.html"

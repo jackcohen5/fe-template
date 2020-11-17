@@ -4,7 +4,7 @@
   "description": "Front End Application For nametbd ",
   "main": "src/index.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "NODE_ENV=development webpack serve --config ./webpack.config.js --mode development",
     "build": "NODE_ENV=production webpack --config ./webpack.config.js --mode production",
     "flint": "eslint --ext .js src/ --fix",
     "lint": "eslint --ext .js src",

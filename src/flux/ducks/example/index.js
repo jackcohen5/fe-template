@@ -1,4 +1,3 @@
-import slice from './slice'
-export const reducer = slice.reducer
-export const { exampleAction } = slice.actions
+export * from './actions'
+export { default as reducer } from './reducer'
 export * from './selectors'

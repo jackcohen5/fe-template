@@ -1,9 +1,13 @@
 const { resolve } = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    webpack = require('webpack')
+    webpack = require('webpack'),
+    ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 
 const BUILD_DIR = resolve(__dirname, '.dist')
+
+const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
+const isDevelopment = env === 'development'
 
 module.exports = {
     entry: './src/index.js',
@@ -35,15 +39,16 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+            'process.env.NODE_ENV': JSON.stringify(env),
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'nametbd',
             template: resolve(__dirname, 'src', 'index.html'),
         }),
-        new webpack.HotModuleReplacementPlugin(),
-    ],
+        isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
+        isDevelopment ? new ReactRefreshWebpackPlugin() : null,
+    ].filter(Boolean),
     watchOptions: {
         ignored: /node_modules/,
     },
@@ -51,10 +56,11 @@ module.exports = {
         contentBase: BUILD_DIR,
         port: 3000,
         hot: true,
+        historyApiFallback: true,
         proxy: {
-            '/': {
-                target: 'http://localhost:8080',
-                secure: false,
+            '/api/**': {
+                target: 'http://localhost:8080/development',
+                pathRewrite: { '^/api': '/api' },
             },
         },
     },

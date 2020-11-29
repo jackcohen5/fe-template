@@ -66,6 +66,10 @@ export function* logoutSaga() {
 export default function* authWatcherSaga() {
     AuthLock = getAuthLock()
 
+    // Handle gracefully
+    // eslint-disable-next-line no-console
+    AuthLock.on('unrecoverable_error', console.error)
+
     yield takeEvery(signUp, loginSaga, {
         initialScreen: 'signUp',
         allowLogin: false,

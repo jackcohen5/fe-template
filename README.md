@@ -6,7 +6,7 @@
 ## Features
 
 * React 16
-* Webpack 4
+* Webpack 5
 * Babel 7
 * ESLint
 * Hot Module Replacement

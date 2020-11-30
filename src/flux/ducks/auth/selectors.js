@@ -1,21 +1,16 @@
-import { AuthState } from './auth.constants'
-
 const authStoreSelector = (state) => state.auth
-
-export const isCheckingLoginSelector = (state) =>
-    authStoreSelector(state).isCheckingLogin
-
-export const isLoggedInSelector = (state) =>
-    authStoreSelector(state).authState === AuthState.LOGGED_IN
-
-export const isLoggingInSelector = (state) =>
-    authStoreSelector(state).authState === AuthState.LOGGING_IN
 
 export const userSelector = (state) => authStoreSelector(state).user
 
-export const accessTokenSelector = (state) => userSelector(state)?.accessToken
+export const emailSelector = (state) => userSelector(state)?.email
 
-export const userRolesSelector = (state) => userSelector(state)?.roles ?? []
+export const firstNameSelector = (state) => userSelector(state)?.firstName
+
+export const lastNameSelector = (state) => userSelector(state)?.lastName
+
+export const nameSelector = (state) => userSelector(state)?.name
+
+export const pictureSelector = (state) => userSelector(state)?.picture
 
 export const isVerifiedSelector = (state) =>
     userSelector(state)?.isVerified ?? false

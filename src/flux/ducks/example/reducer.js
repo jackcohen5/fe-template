@@ -1,6 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
 
-import { checkingLogin } from 'src/flux/ducks/auth'
 import { exampleAction } from './actions'
 
 const initialState = {
@@ -11,9 +10,6 @@ const initialState = {
 const reducer = createReducer(initialState, {
     [exampleAction]: (state) => {
         state.hasTriggeredExample = true
-    },
-    [checkingLogin]: (state) => {
-        state.someAdditionalFlag = true
     },
 })
 

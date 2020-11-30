@@ -54,8 +54,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^1.2.0",
     "@reduxjs/toolkit": "^1.4.0",
-    "auth0-lock": "^11.27.0",
     "core-js": "^3.8.0",
     "logrocket": "^1.0.14",
     "prop-types": "^15.7.2",

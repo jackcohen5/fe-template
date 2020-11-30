@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects'
 import LogRocket from 'logrocket'
 
-import { loginSuccess } from 'src/flux/ducks/auth'
+import { handleLogin } from 'src/flux/ducks/auth'
 
 const identifyToLogrocket = ({
     payload: {
@@ -15,6 +15,6 @@ const identifyToLogrocket = ({
 
 export default function* loggingWatcherSaga() {
     if (process.env.NODE_ENV !== 'development') {
-        yield takeEvery(loginSuccess, identifyToLogrocket)
+        yield takeEvery(handleLogin, identifyToLogrocket)
     }
 }

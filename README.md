@@ -5,7 +5,7 @@
 
 ## Features
 
-* React 16
+* React 17
 * Webpack 5
 * Babel 7
 * ESLint

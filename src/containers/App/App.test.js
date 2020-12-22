@@ -1,47 +1,57 @@
-import { shallow } from 'enzyme'
+import { render, screen } from '@testing-library/react'
+import UserEvent from '@testing-library/user-event'
 
-import Button from 'components/Button'
-import Navbar from 'components/Navbar'
-
-import { AppContainer } from './App.styles'
+import routes from 'routes'
 
 import { UnwrappedApp as App } from '.'
 
 const defaultProps = {
-    hasTriggeredExample: false,
     exampleAction: () => {},
+    hasTriggeredExample: false,
+    isLoggedIn: false,
 }
 
-const renderComponent = (props = {}, method = shallow) =>
-    method(<App {...defaultProps} {...props} />)
+const renderComponent = (props = {}) =>
+    render(<App {...defaultProps} {...props} />)
 
 describe('App', () => {
-    it('passes title to navbar', () => {
-        const wrapper = renderComponent({})
-        expect(wrapper.find(Navbar).exists()).toBe(true)
-        expect(wrapper.find(Navbar).prop('title')).toBe('FE Template')
+    it('Untriggered example displays correct description', () => {
+        renderComponent({ hasTriggeredExample: false })
+        expect(
+            screen.getByText('Example has NOT been triggered', {
+                exact: false,
+            }),
+        ).toBeDefined()
     })
 
-    it('untriggered example matches snapshot', () => {
-        const wrapper = renderComponent({
-            hasTriggeredExample: false,
-        })
-        expect(wrapper.find(AppContainer).text()).toMatchSnapshot()
+    it('Triggered example displays correct description', () => {
+        renderComponent({ hasTriggeredExample: true })
+        expect(
+            screen.getByText('Example has been triggered', {
+                exact: false,
+            }),
+        ).toBeDefined()
     })
 
-    it('triggered example matches snapshot', () => {
-        const wrapper = renderComponent({
-            hasTriggeredExample: true,
-        })
-        expect(wrapper.find(AppContainer).text()).toMatchSnapshot()
-    })
-
-    it('calls exampleAction on button click', () => {
+    it('Calls exampleAction on button click', () => {
         const exampleActionSpy = jest.fn()
-        const wrapper = renderComponent({
-            exampleAction: exampleActionSpy,
-        })
-        wrapper.find(Button).simulate('click')
+        renderComponent({ exampleAction: exampleActionSpy })
+        UserEvent.click(screen.getByRole('button', { name: 'Trigger Example' }))
         expect(exampleActionSpy).toHaveBeenCalled()
     })
+
+    it.each`
+        isLoggedIn | label        | route
+        ${false}   | ${'private'} | ${routes.PROTECTED_HOME}
+        ${true}    | ${'public'}  | ${routes.HOME}
+    `(
+        'returns link to $route when isLoggedIn is $isLoggedIn',
+        ({ isLoggedIn, label, route }) => {
+            renderComponent({ isLoggedIn })
+            const expectedLabel = `Go to ${label} app`
+            const link = screen.getByRole('link', { name: expectedLabel })
+            expect(link).toHaveAttribute('href', route)
+            expect(link).toHaveTextContent(expectedLabel)
+        },
+    )
 })

@@ -5,11 +5,10 @@
 
 ## Features
 
-* React 17
-* Webpack 5
-* Babel 7
+* React 17 + Next 10 on Vercel
+* Jest + React Testing Library
 * ESLint
-* Hot Module Replacement
+* CircleCI
 
 ## Getting Started
 

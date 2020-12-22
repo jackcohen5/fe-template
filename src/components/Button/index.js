@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const getTextColor = theme => {
@@ -28,7 +29,10 @@ const getHoverColor = theme => {
     }
 }
 
-export default styled.button`
+const Button = styled.button.attrs(props => ({
+    'aria-label': props.ariaLabel,
+    role: 'button',
+}))`
     padding: 10px 40px;
     font-size: ${props => getTextSize(props.theme)};
     border-radius: 3px;
@@ -42,3 +46,14 @@ export default styled.button`
         color: black;
     }
 `
+
+Button.propTypes = {
+    ariaLabel: PropTypes.string.isRequired,
+    theme: PropTypes.string,
+}
+
+Button.defaultProps = {
+    theme: null,
+}
+
+export default Button

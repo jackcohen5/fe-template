@@ -1,6 +1,7 @@
 {
   "name": "fe-template",
   "version": "0.0.1",
+  "license": "MIT",
   "description": "Front End Application for FE Template",
   "scripts": {
     "start": "next dev",

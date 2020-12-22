@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-import { Colours } from 'src/constants/Branding'
-import { FontSize } from 'src/constants/Typography'
+import { Colours } from 'constants/Branding'
+import { FontSize } from 'constants/Typography'
 
 export const Container = styled.nav`
     position: fixed;

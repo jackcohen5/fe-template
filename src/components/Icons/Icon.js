@@ -1,9 +1,8 @@
-import React from 'react'
 import PropTypes from 'prop-types'
 
 import { IconBtn } from './icon.styles'
 
-const Icon = (props) => {
+const Icon = props => {
     const { children, color, onClick, ...otherProps } = props
     return (
         <IconBtn color={color} onClick={onClick}>

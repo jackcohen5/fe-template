@@ -8,7 +8,7 @@ const initialState = {
 }
 
 const reducer = createReducer(initialState, {
-    [exampleAction]: (state) => {
+    [exampleAction]: state => {
         state.hasTriggeredExample = true
     },
 })

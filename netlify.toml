@@ -17,6 +17,10 @@
 [build.processing.images]
   compress = true
 
+# Plugins
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 # Production
 [context.production.environment]
   API_LOCATION = "https://path.to.production.api.com/production/api/:splat"

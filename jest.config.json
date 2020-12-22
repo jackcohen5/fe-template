@@ -1,9 +1,9 @@
 {
   "verbose": true,
-  "moduleDirectories": ["node_modules", "<rootDir>"],
-  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "moduleDirectories": ["node_modules", "src"],
+  "testRegex": "src\/.*\\.test\\.js$",
   "transform": {
-    "^.+\\.[t|j]sx?$": "babel-jest"
+    "^.+\\.js$": "babel-jest"
   },
   "setupFilesAfterEnv": [
     "<rootDir>config/setupTests.js"

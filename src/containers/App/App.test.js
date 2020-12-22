@@ -1,11 +1,11 @@
-import React from 'react'
 import { shallow } from 'enzyme'
 
-import Button from 'src/components/Button'
-import Navbar from 'src/components/Navbar'
+import Button from 'components/Button'
+import Navbar from 'components/Navbar'
+
+import { AppContainer } from './App.styles'
 
 import { UnwrappedApp as App } from '.'
-import { AppContainer } from './App.styles'
 
 const defaultProps = {
     hasTriggeredExample: false,
@@ -19,7 +19,7 @@ describe('App', () => {
     it('passes title to navbar', () => {
         const wrapper = renderComponent({})
         expect(wrapper.find(Navbar).exists()).toBe(true)
-        expect(wrapper.find(Navbar).prop('title')).toBe('nametbd')
+        expect(wrapper.find(Navbar).prop('title')).toBe('FE Template')
     })
 
     it('untriggered example matches snapshot', () => {

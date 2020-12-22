@@ -5,7 +5,7 @@ import LogRocket from 'logrocket'
 import rootReducer from './reducer'
 import rootSaga from './sagas'
 
-export default () => {
+const configureAppStore = () => {
     const sagaMiddleware = createSagaMiddleware()
     const store = configureStore({
         reducer: rootReducer,
@@ -14,3 +14,5 @@ export default () => {
     sagaMiddleware.run(rootSaga)
     return store
 }
+
+export default configureAppStore

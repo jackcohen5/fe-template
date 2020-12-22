@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect, useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { withAuthenticationRequired, useAuth0 } from '@auth0/auth0-react'
 
-import App from 'src/containers/App'
-import {
-    handleLogin,
-    isVerifiedSelector,
-    userSelector,
-} from 'src/flux/ducks/auth'
-import Button from 'src/components/Button'
-import routes from 'src/routes'
+import App from 'pages'
+import { handleLogin, isVerifiedSelector, userSelector } from 'flux/ducks/auth'
+import Button from 'components/Button'
+import routes from 'routes'
 
 import { AppContainer } from './ProtectedApp.styles'
 
@@ -37,7 +33,19 @@ const useHandleLogin = () => {
                 }),
             )
         }
-    }, [isAuthenticated, getAccessTokenSilently, currentUser])
+    }, [
+        isAuthenticated,
+        getAccessTokenSilently,
+        currentUser,
+        dispatch,
+        user.email,
+        user.given_name,
+        user.family_name,
+        user.name,
+        user.email_verified,
+        user.picture,
+        user.sub,
+    ])
 
     return { logout }
 }
@@ -55,10 +63,10 @@ export const UnwrappedProtectedApp = ({ isVerified }) => {
 
     return (
         <AppContainer>
-            <Link to={routes.HOME}>Go to public App</Link>
+            <Link href={routes.HOME}>Go to public App</Link>
             {isVerified ? (
                 <>
-                    <App />
+                    <App isLoggedIn={true} />
                     {logoutButton}
                 </>
             ) : (
@@ -76,7 +84,7 @@ UnwrappedProtectedApp.propTypes = {
     isVerified: PropTypes.bool.isRequired,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
     isVerified: isVerifiedSelector(state),
 })
 

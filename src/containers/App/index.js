@@ -1,24 +1,23 @@
-import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
-import Button from 'src/components/Button'
-import Navbar from 'src/components/Navbar'
-import routes from 'src/routes'
-
-import {
-    exampleAction,
-    hasTriggeredExampleSelector,
-} from 'src/flux/ducks/example'
+import Button from 'components/Button'
+import Navbar from 'components/Navbar'
+import routes from 'routes'
+import { exampleAction, hasTriggeredExampleSelector } from 'flux/ducks/example'
 
 import { AppContainer } from './App.styles'
 
-export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
+export const UnwrappedApp = ({
+    hasTriggeredExample,
+    exampleAction,
+    isLoggedIn,
+}) => (
     <>
-        <Navbar title="nametbd" />
+        <Navbar title="FE Template" />
         <AppContainer>
-            Congrats, you started up nametbd.
+            Congrats, you started up the FE template.
             <br />
             Example has {!hasTriggeredExample && 'NOT '}been triggered.
             <br />
@@ -26,7 +25,9 @@ export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
                 Trigger Example Action
             </Button>
             <br />
-            <Link to={routes.PROTECTED_HOME}>Go to private App</Link>
+            <Link href={isLoggedIn ? routes.HOME : routes.PROTECTED_HOME}>
+                <a>Go to {isLoggedIn ? 'public' : 'private'} app</a>
+            </Link>
         </AppContainer>
     </>
 )
@@ -34,9 +35,14 @@ export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
 UnwrappedApp.propTypes = {
     exampleAction: PropTypes.func.isRequired,
     hasTriggeredExample: PropTypes.bool.isRequired,
+    isLoggedIn: PropTypes.bool,
 }
 
-const mapStateToProps = (state) => ({
+UnwrappedApp.defaultProps = {
+    isLoggedIn: false,
+}
+
+const mapStateToProps = state => ({
     hasTriggeredExample: hasTriggeredExampleSelector(state),
 })
 

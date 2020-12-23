@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "Front End Application for FE Template",
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
     "flint": "eslint --ext .js src/ --fix",
     "lint": "eslint --ext .js src",

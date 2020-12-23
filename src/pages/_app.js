@@ -20,8 +20,10 @@ const BootstrappedApp = ({ Component, pageProps }) => {
     try {
         origin = window?.location?.origin
     } catch (e) {
+        console.log('e', e)
         origin = 'http://localhost:3000'
     }
+    console.log('origin', origin)
 
     return (
         <div style={{ fontFamily: FontFamily }}>

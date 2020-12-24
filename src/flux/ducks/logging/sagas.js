@@ -1,7 +1,7 @@
 import { takeEvery } from 'redux-saga/effects'
 import LogRocket from 'logrocket'
 
-import { handleLogin } from 'src/flux/ducks/auth'
+import { handleLogin } from 'flux/ducks/auth'
 
 const identifyToLogrocket = ({
     payload: {

@@ -28,9 +28,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['*', '.js', '.jsx'],
-        alias: {
-            src: resolve(__dirname, 'src/'),
-        },
+        modules: ['node_modules', 'src'],
     },
     output: {
         path: BUILD_DIR,
@@ -43,7 +41,7 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'nametbd',
+            title: 'FE Template',
             template: resolve(__dirname, 'src', 'index.html'),
         }),
         isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,

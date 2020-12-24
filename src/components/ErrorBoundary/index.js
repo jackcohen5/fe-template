@@ -1,12 +1,12 @@
-import React from 'react'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
 import LogRocket from 'logrocket'
 
-import Button from 'src/components/Button'
+import Button from 'components/Button'
 
 import { Container } from './ErrorBoundary.styles'
 
-class ErrorBoundary extends React.Component {
+class ErrorBoundary extends Component {
     constructor(props) {
         super(props)
         this.state = { hasError: false }
@@ -33,6 +33,7 @@ class ErrorBoundary extends React.Component {
                         again.
                     </h3>
                     <Button
+                        ariaLabel="Refresh the page"
                         type="button"
                         onClick={() => window.location.reload()}
                     >

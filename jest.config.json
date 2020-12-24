@@ -1,6 +1,5 @@
 {
-  "verbose": true,
-  "moduleDirectories": ["node_modules", "<rootDir>"],
+  "moduleDirectories": ["node_modules", "src"],
   "testRegex": "((\\.|/*.)(test))\\.js?$",
   "transform": {
     "^.+\\.[t|j]sx?$": "babel-jest"

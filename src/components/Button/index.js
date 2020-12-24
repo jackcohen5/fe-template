@@ -28,7 +28,9 @@ const getHoverColor = (theme) => {
     }
 }
 
-export default styled.button`
+export default styled.button.attrs((props) => ({
+    'aria-label': props.ariaLabel,
+}))`
     padding: 10px 40px;
     font-size: ${(props) => getTextSize(props.theme)};
     border-radius: 3px;

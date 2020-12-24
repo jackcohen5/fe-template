@@ -1,24 +1,19 @@
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
-import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Auth0Provider } from '@auth0/auth0-react'
 import LogRocket from 'logrocket'
 
-import { FontFamily } from 'src/constants/Typography'
-import routes from 'src/routes'
-import configureStore from 'src/flux/store'
-import App from 'src/containers/App'
-import ErrorBoundary from 'src/components/ErrorBoundary'
-import ProtectedApp from 'src/containers/ProtectedApp'
-import {
-    AUTH0_AUDIENCE,
-    AUTH0_CLIENT_ID,
-    AUTH0_DOMAIN,
-} from 'src/flux/ducks/auth'
+import { FontFamily } from 'constants/Typography'
+import routes from 'routes'
+import configureStore from 'flux/store'
+import App from 'containers/App'
+import ErrorBoundary from 'components/ErrorBoundary'
+import ProtectedApp from 'containers/ProtectedApp'
+import { AUTH0_AUDIENCE, AUTH0_CLIENT_ID, AUTH0_DOMAIN } from 'flux/ducks/auth'
 
 if (process.env.NODE_ENV !== 'development') {
     LogRocket.init('your/logrocket/client-key')

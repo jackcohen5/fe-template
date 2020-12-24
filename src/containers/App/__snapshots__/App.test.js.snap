@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`App triggered example matches snapshot 1`] = `"Congrats, you started up nametbd.Example has been triggered.Trigger Example ActionGo to private App"`;
-
-exports[`App untriggered example matches snapshot 1`] = `"Congrats, you started up nametbd.Example has NOT been triggered.Trigger Example ActionGo to private App"`;

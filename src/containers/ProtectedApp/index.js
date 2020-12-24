@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { withAuthenticationRequired } from '@auth0/auth0-react'
 
 import App from 'containers/App'
@@ -26,9 +25,6 @@ export const UnwrappedProtectedApp = ({ isVerified }) => {
 
     return (
         <AppContainer>
-            <Link aria-label="Go to public app" to={routes.HOME}>
-                Go to public app
-            </Link>
             {isVerified ? (
                 <>
                     <App />

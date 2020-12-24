@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 
 import Button from 'components/Button'
 import Navbar from 'components/Navbar'
@@ -8,30 +8,39 @@ import routes from 'routes'
 
 import { exampleAction, hasTriggeredExampleSelector } from 'flux/ducks/example'
 
-import { AppContainer } from './App.styles'
+import { AppContainer, StyledLink } from './App.styles'
 
-export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => (
-    <>
-        <Navbar title="FE Template" />
-        <AppContainer>
-            Congrats, you started up the FE template.
-            <br />
-            Example has {!hasTriggeredExample && 'NOT '}been triggered.
-            <br />
-            <Button
-                ariaLabel="Trigger Example"
-                onClick={() => exampleAction()}
-                type="button"
-            >
-                Trigger Example Action
-            </Button>
-            <br />
-            <Link aria-label="Go to private app" to={routes.PROTECTED_HOME}>
-                Go to private app
-            </Link>
-        </AppContainer>
-    </>
-)
+export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => {
+    const { pathname } = useLocation()
+    const linkParams =
+        pathname === routes.HOME
+            ? {
+                  to: routes.PROTECTED_HOME,
+                  label: 'Go to private app',
+              }
+            : {
+                  to: routes.HOME,
+                  label: 'Go to public app',
+              }
+    return (
+        <>
+            <Navbar title="FE Template" />
+            <AppContainer>
+                Congrats, you started up the FE template.
+                <br />
+                Example has {!hasTriggeredExample && 'NOT '}been triggered.
+                <Button
+                    ariaLabel="Trigger Example"
+                    onClick={() => exampleAction()}
+                    type="button"
+                >
+                    Trigger Example Action
+                </Button>
+                <StyledLink {...linkParams} />
+            </AppContainer>
+        </>
+    )
+}
 
 UnwrappedApp.propTypes = {
     exampleAction: PropTypes.func.isRequired,

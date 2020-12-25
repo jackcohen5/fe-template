@@ -1,9 +1,11 @@
 import styled from 'styled-components'
 
+import { Colours } from 'constants/Branding'
+
 const getTextColor = (theme) => {
     switch (theme) {
         default:
-            return 'white'
+            return Colours.Black
     }
 }
 
@@ -24,7 +26,7 @@ const getTextSize = (theme) => {
 const getHoverColor = (theme) => {
     switch (theme) {
         default:
-            return 'white'
+            return Colours.White
     }
 }
 

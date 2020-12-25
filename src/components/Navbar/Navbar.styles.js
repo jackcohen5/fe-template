@@ -25,5 +25,6 @@ export const TextContainer = styled.div`
     flex-direction: column;
     text-align: center;
 
+    color: ${Colours.White};
     font-size: ${FontSize.LG};
 `

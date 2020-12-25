@@ -26,6 +26,7 @@ const getHoverColor = (theme) => {
 const StyledLink = styled(Link)`
     font-size: ${(props) => getTextSize(props.theme)};
     color: ${(props) => getTextColor(props.theme)};
+    padding: 5px;
 
     &:hover {
         background-color: ${(props) => getHoverColor(props.theme)};

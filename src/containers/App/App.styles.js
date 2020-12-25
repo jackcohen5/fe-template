@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import Link from 'components/Link'
 
-export const AppContainer = styled.div`
+export const AppContainer = styled.main`
     width: 100%;
     height: 100%;
     margin: 50px 0 0;

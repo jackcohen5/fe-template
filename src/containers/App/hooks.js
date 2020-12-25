@@ -1,15 +1,7 @@
-import { useCallback, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useMemo } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import Loader from 'components/Loader'
-import {
-    apiExampleAction,
-    exampleApiIsLoadingSelector,
-    exampleApiResultSelector,
-    hasTriggeredExampleApiSelector,
-} from 'flux/ducks/apiExample'
-import { exampleAction, hasTriggeredExampleSelector } from 'flux/ducks/example'
 import routes from 'routes'
 
 export const useLinkParams = () => {
@@ -25,14 +17,7 @@ export const useLinkParams = () => {
           }
 }
 
-export const useExampleAction = () => {
-    const dispatch = useDispatch()
-    const onClick = useCallback(() => dispatch(exampleAction()), [
-        dispatch,
-        exampleAction,
-    ])
-
-    const hasTriggeredExample = useSelector(hasTriggeredExampleSelector)
+export const useExampleAction = ({ exampleAction, hasTriggeredExample }) => {
     const description = useMemo(
         () => (
             <div>
@@ -41,19 +26,15 @@ export const useExampleAction = () => {
         ),
         [hasTriggeredExample],
     )
-    return { description, buttonDisabled: false, onClick }
+    return { description, buttonDisabled: false, onClick: exampleAction }
 }
 
-export const useExampleApiAction = () => {
-    const dispatch = useDispatch()
-    const onClick = useCallback(() => dispatch(apiExampleAction()), [
-        dispatch,
-        apiExampleAction,
-    ])
-
-    const hasTriggeredExampleApi = useSelector(hasTriggeredExampleApiSelector)
-    const exampleApiIsLoading = useSelector(exampleApiIsLoadingSelector)
-    const exampleApiResult = useSelector(exampleApiResultSelector)
+export const useExampleApiAction = ({
+    apiExampleAction,
+    exampleApiIsLoading,
+    exampleApiResult,
+    hasTriggeredExampleApi,
+}) => {
     const description = useMemo(
         () =>
             exampleApiIsLoading ? (
@@ -74,5 +55,9 @@ export const useExampleApiAction = () => {
             ),
         [hasTriggeredExampleApi, exampleApiIsLoading, exampleApiResult],
     )
-    return { description, buttonDisabled: exampleApiIsLoading, onClick }
+    return {
+        description,
+        buttonDisabled: exampleApiIsLoading,
+        onClick: apiExampleAction,
+    }
 }

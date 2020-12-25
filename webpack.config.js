@@ -28,7 +28,10 @@ module.exports = {
     },
     resolve: {
         extensions: ['*', '.js', '.jsx'],
-        modules: ['node_modules', 'src'],
+        modules: [
+            resolve(__dirname, 'src'),
+            resolve(__dirname, 'node_modules'),
+        ],
     },
     output: {
         path: BUILD_DIR,

@@ -26,9 +26,10 @@ export const UnwrappedApp = ({ hasTriggeredExample, exampleAction }) => {
         <>
             <Navbar title="FE Template" />
             <AppContainer>
-                Congrats, you started up the FE template.
-                <br />
-                Example has {!hasTriggeredExample && 'NOT '}been triggered.
+                <div>Congrats, you started up the FE template.</div>
+                <div>
+                    Example has {!hasTriggeredExample && 'NOT '}been triggered.
+                </div>
                 <Button
                     ariaLabel="Trigger Example"
                     onClick={() => exampleAction()}

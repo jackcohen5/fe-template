@@ -5,11 +5,12 @@ import { withAuthenticationRequired } from '@auth0/auth0-react'
 import App from 'containers/App'
 import { isVerifiedSelector } from 'flux/ducks/auth'
 import Button from 'components/Button'
+import Loader from 'components/Loader'
 import routes from 'routes'
 
 import { useHandleLogin } from './hooks'
 
-import { AppContainer } from './ProtectedApp.styles'
+import { AppContainer, StretchContainer } from './ProtectedApp.styles'
 
 export const UnwrappedProtectedApp = ({ isVerified }) => {
     const { logout } = useHandleLogin()
@@ -54,7 +55,9 @@ export default withAuthenticationRequired(
     {
         returnTo: routes.PRIVATE,
         onRedirecting: () => (
-            <AppContainer>Redirecting you to the login screen...</AppContainer>
+            <StretchContainer>
+                <Loader />
+            </StretchContainer>
         ),
     },
 )

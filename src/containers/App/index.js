@@ -5,7 +5,7 @@ import { AppContainer } from './App.styles'
 import ExampleAction from './ExampleAction'
 import { useExampleAction, useExampleApiAction, useLinkParams } from './hooks'
 
-export const UnwrappedApp = () => {
+export const App = () => {
     const exampleActionProps = useExampleAction()
     const exampleApiActionProps = useExampleApiAction()
     const linkParams = useLinkParams()
@@ -28,4 +28,4 @@ export const UnwrappedApp = () => {
     )
 }
 
-export default UnwrappedApp
+export default App

@@ -12,7 +12,7 @@ const getTextColor = (theme) => {
 const getBackgroundColor = (theme) => {
     switch (theme) {
         default:
-            return '#4CAF50'
+            return Colours.Secondary
     }
 }
 
@@ -43,6 +43,6 @@ export default styled.button.attrs((props) => ({
 
     &:hover {
         background-color: ${(props) => getHoverColor(props.theme)};
-        color: black;
+        color: ${Colours.Black};
     }
 `

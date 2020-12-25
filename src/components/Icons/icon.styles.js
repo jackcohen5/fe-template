@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 
+import { Colours } from 'constants/Branding'
+
 const getColor = (color) => {
     switch (color) {
         case 'danger':
-            return 'rgb(158, 26, 26)'
+            return Colours.Danger
         default:
-            return 'black'
+            return Colours.Black
     }
 }
 

@@ -35,7 +35,7 @@ module.exports = {
     },
     output: {
         path: BUILD_DIR,
-        filename: '[name]-[hash].bundle.js',
+        filename: '[name]-[chunkhash].bundle.js',
     },
     plugins: [
         new webpack.ProgressPlugin(),

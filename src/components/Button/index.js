@@ -9,7 +9,11 @@ const getTextColor = (theme) => {
     }
 }
 
-const getBackgroundColor = (theme) => {
+const getBackgroundColor = (theme, disabled = false) => {
+    if (disabled) {
+        return Colours.White
+    }
+
     switch (theme) {
         default:
             return Colours.Secondary
@@ -30,19 +34,22 @@ const getHoverColor = (theme) => {
     }
 }
 
-export default styled.button.attrs((props) => ({
+const StyledButton = styled.button.attrs((props) => ({
     'aria-label': props.ariaLabel,
 }))`
     padding: 10px 40px;
     font-size: ${(props) => getTextSize(props.theme)};
     border-radius: 3px;
     color: ${(props) => getTextColor(props.theme)};
-    background-color: ${(props) => getBackgroundColor(props.theme)};
+    background-color: ${(props) =>
+        getBackgroundColor(props.theme, props.disabled)};
     transition-duration: 0.3s;
-    cursor: pointer;
+    cursor: ${(props) => (props.disabled ? 'unset' : 'pointer')};
 
     &:hover {
         background-color: ${(props) => getHoverColor(props.theme)};
         color: ${Colours.Black};
     }
 `
+
+export default StyledButton

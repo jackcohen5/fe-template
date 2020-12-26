@@ -12,9 +12,12 @@ jest.mock('react-router-dom', () => ({
 }))
 
 const defaultProps = {
+    apiExampleAction: () => {},
     exampleAction: () => {},
+    exampleApiIsLoading: false,
     hasTriggeredExample: false,
-    isLoggedIn: false,
+    hasTriggeredExampleApi: false,
+    exampleApiResult: '',
 }
 
 const renderComponent = (props = {}) =>
@@ -32,29 +35,70 @@ describe('App', () => {
         })
     })
 
-    it('Untriggered example displays correct description', () => {
-        renderComponent({ hasTriggeredExample: false })
-        expect(
-            screen.getByText('Example has NOT been triggered', {
-                exact: false,
-            }),
-        ).toBeDefined()
+    describe('Example action', () => {
+        it('Displays correct description when untriggered', () => {
+            renderComponent({ hasTriggeredExample: false })
+            expect(
+                screen.getByText('Example has NOT been triggered', {
+                    exact: false,
+                }),
+            ).toBeDefined()
+        })
+
+        it('Displays correct description when triggered', () => {
+            renderComponent({ hasTriggeredExample: true })
+            expect(
+                screen.getByText('Example has been triggered', {
+                    exact: false,
+                }),
+            ).toBeDefined()
+        })
+
+        it('Calls exampleAction on button click', () => {
+            const exampleActionSpy = jest.fn()
+            renderComponent({ exampleAction: exampleActionSpy })
+            UserEvent.click(
+                screen.getByRole('button', { name: 'Trigger Example Action' }),
+            )
+            expect(exampleActionSpy).toHaveBeenCalled()
+        })
     })
 
-    it('Triggered example displays correct description', () => {
-        renderComponent({ hasTriggeredExample: true })
-        expect(
-            screen.getByText('Example has been triggered', {
-                exact: false,
-            }),
-        ).toBeDefined()
-    })
+    describe('Example API action', () => {
+        it('Displays correct description when untriggered', () => {
+            renderComponent({ hasTriggeredExampleApi: false })
+            expect(
+                screen.getByText('Example API call has NOT been triggered', {
+                    exact: false,
+                }),
+            ).toBeDefined()
+        })
 
-    it('Calls exampleAction on button click', () => {
-        const exampleActionSpy = jest.fn()
-        renderComponent({ exampleAction: exampleActionSpy })
-        UserEvent.click(screen.getByRole('button', { name: 'Trigger Example' }))
-        expect(exampleActionSpy).toHaveBeenCalled()
+        it('Displays correct description when triggered', () => {
+            renderComponent({ hasTriggeredExampleApi: true })
+            expect(
+                screen.getByText('Example API call has been triggered', {
+                    exact: false,
+                }),
+            ).toBeDefined()
+        })
+
+        it('Displays loading message when loading', () => {
+            renderComponent({
+                hasTriggeredExampleApi: true,
+                exampleApiIsLoading: true,
+            })
+            expect(screen.getByText('Calling in 1 second...')).toBeDefined()
+        })
+
+        it('Calls apiExampleAction on button click', () => {
+            const apiExampleActionSpy = jest.fn()
+            renderComponent({ apiExampleAction: apiExampleActionSpy })
+            UserEvent.click(
+                screen.getByRole('button', { name: 'Trigger API Call' }),
+            )
+            expect(apiExampleActionSpy).toHaveBeenCalled()
+        })
     })
 
     it.each`

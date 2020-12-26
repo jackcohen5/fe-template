@@ -10,7 +10,7 @@ import routes from 'routes'
 
 import { useHandleLogin } from './hooks'
 
-import { AppContainer, StretchContainer } from './ProtectedApp.styles'
+import { AppContainer } from './ProtectedApp.styles'
 
 export const UnwrappedProtectedApp = ({ isVerified }) => {
     const { logout } = useHandleLogin()
@@ -54,10 +54,6 @@ export default withAuthenticationRequired(
     connect(mapStateToProps)(UnwrappedProtectedApp),
     {
         returnTo: routes.PRIVATE,
-        onRedirecting: () => (
-            <StretchContainer>
-                <Loader />
-            </StretchContainer>
-        ),
+        onRedirecting: () => <Loader isStretchy={true} />,
     },
 )

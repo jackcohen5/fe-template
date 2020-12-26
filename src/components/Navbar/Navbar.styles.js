@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { Colours } from 'constants/Branding'
 import { FontSize } from 'constants/Typography'
 
+import { NavbarHeight } from './Navbar.constants'
+
 export const Container = styled.nav`
     position: fixed;
     top: 0;
@@ -12,7 +14,7 @@ export const Container = styled.nav`
     box-shadow: 0px 5px 5px 0px #bababa;
 
     width: 100%;
-    height: 40px;
+    height: ${NavbarHeight}px;
 
     display: flex;
 `

@@ -14,4 +14,5 @@ Navbar.propTypes = {
     title: PropTypes.string.isRequired,
 }
 
+export { NavbarHeight } from './Navbar.constants'
 export default Navbar

@@ -18,6 +18,6 @@ export function* triggerExampleApiSaga() {
     }
 }
 
-export default function* exampleWatcherSaga() {
+export default function* apiExampleWatcherSaga() {
     yield takeEvery(apiExampleAction, triggerExampleApiSaga)
 }

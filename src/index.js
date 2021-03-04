@@ -25,7 +25,7 @@ const App = lazy(() => import('containers/App'))
 const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
 
 ReactDOM.render(
-    <div style={{ fontFamily: FontFamily }}>
+    <div id="app" style={{ fontFamily: FontFamily }}>
         <ErrorBoundary tag="root">
             <Auth0Provider
                 audience={AUTH0_AUDIENCE}

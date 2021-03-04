@@ -1,4 +1,4 @@
-# Frontend App Template
+# FE App Template
 
 [![CircleCI](https://circleci.com/gh/jackcohen5/fe-template.svg?style=svg)](https://circleci.com/gh/jackcohen5/fe-template)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jackcohen5/fe-template)](https://dependabot.com)

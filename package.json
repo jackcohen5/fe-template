@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
-    "@babel/preset-env": "^7.14.0",
+    "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.13.13",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@testing-library/dom": "^7.30.4",
@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.4.0",
-    "@reduxjs/toolkit": "^1.5.1",
+    "@reduxjs/toolkit": "^1.6.0",
     "core-js": "^3.11.1",
     "logrocket": "^1.1.0",
     "prop-types": "^15.7.2",

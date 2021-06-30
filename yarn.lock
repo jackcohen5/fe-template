@@ -1355,10 +1355,10 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
-"@tophat/eslint-config@^0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@tophat/eslint-config/-/eslint-config-0.2.1.tgz#6689dba91ef304f21f8a9201057cd718ae3f34bc"
-  integrity sha512-cmHkESCDXUeIhxfF6jqFTOBLm29LCE4M4Fphm0PzdeaAtNUkEub+t5tATMS47dJcXthTODhGoy+TIEvIx3rqAA==
+"@tophat/eslint-config@^0.10.3":
+  version "0.10.3"
+  resolved "https://registry.yarnpkg.com/@tophat/eslint-config/-/eslint-config-0.10.3.tgz#2c172c2204ede131ea6a3999f41bdfb54eeec479"
+  integrity sha512-FD44MjsAAUs7dLNlDS1bPZrka+Cu+pxgyDN3w3u/DDztgLtVpHh39GUacutj3/t07pHNHLYiAsKRsgAD8eZdlw==
 
 "@types/anymatch@*":
   version "1.3.1"

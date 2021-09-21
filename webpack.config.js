@@ -28,10 +28,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['*', '.js', '.jsx'],
-        modules: [
-            resolve(__dirname, 'src'),
-            resolve(__dirname, 'node_modules'),
-        ],
+        modules: [resolve(__dirname, 'src'), 'node_modules'],
     },
     output: {
         path: BUILD_DIR,
@@ -54,7 +51,6 @@ module.exports = {
         ignored: /node_modules/,
     },
     devServer: {
-        contentBase: BUILD_DIR,
         port: 3000,
         hot: true,
         historyApiFallback: true,

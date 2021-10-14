@@ -44,6 +44,8 @@ const store = configureStore()
 
 const App = lazy(() => import('containers/App'))
 const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
+const Login = lazy(() => import('containers/Login'))
+const SignUp = lazy(() => import('containers/SignUp'))
 
 const AuthAndRoleIsLoaded = ({ children }) => {
     const isAuthLoaded = useSelector(isAuthLoadedSelector)
@@ -81,6 +83,16 @@ ReactDOM.render(
                                         exact
                                         path={routes.HOME}
                                         component={App}
+                                    />
+                                    <Route
+                                        exact
+                                        path={routes.LOGIN}
+                                        component={Login}
+                                    />
+                                    <Route
+                                        exact
+                                        path={routes.SIGN_UP}
+                                        component={SignUp}
                                     />
                                     <TitledRoute
                                         exact

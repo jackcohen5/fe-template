@@ -1,3 +1,8 @@
+export const Themes = {
+    Primary: 'primary',
+    Secondary: 'secondary',
+}
+
 export const Colours = {
     Primary: '#3b5998',
     Secondary: '#4CAF50',

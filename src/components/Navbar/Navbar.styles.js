@@ -1,32 +1,30 @@
 import styled from 'styled-components'
 
 import { Colours } from 'constants/Branding'
-import { FontSize } from 'constants/Typography'
 
 import { NavbarHeight } from './Navbar.constants'
 
-export const Container = styled.nav`
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    background-color: ${Colours.Primary};
-    box-shadow: 0px 5px 5px 0px #bababa;
-
-    width: 100%;
-    height: ${NavbarHeight}px;
-
+export const ButtonWrapper = styled.div`
     display: flex;
+    gap: 10px;
+    align-items: center;
 `
 
-export const TextContainer = styled.div`
-    flex: 1 1;
+export const Container = styled.nav`
+    background-color: ${Colours.Primary};
+
+    height: ${NavbarHeight}px;
+    padding: 1rem;
 
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+`
 
-    color: ${Colours.White};
-    font-size: ${FontSize.LG};
+export const AvatarImg = styled.img`
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 100px;
+    border: 0px solid ${Colours.White};
 `

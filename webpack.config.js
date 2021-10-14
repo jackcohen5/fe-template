@@ -32,6 +32,7 @@ module.exports = {
     },
     output: {
         path: BUILD_DIR,
+        publicPath: '/',
         filename: '[name]-[chunkhash].bundle.js',
     },
     plugins: [
@@ -41,11 +42,12 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'FE Template',
             template: resolve(__dirname, 'src', 'index.html'),
         }),
         isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
-        isDevelopment ? new ReactRefreshWebpackPlugin() : null,
+        isDevelopment
+            ? new ReactRefreshWebpackPlugin({ overlay: false })
+            : null,
     ].filter(Boolean),
     watchOptions: {
         ignored: /node_modules/,
@@ -61,4 +63,5 @@ module.exports = {
             },
         },
     },
+    devtool: 'source-map',
 }

@@ -1,16 +1,25 @@
-const authStoreSelector = (state) => state.auth
+import { getErrorMessage } from './constants'
 
-export const userSelector = (state) => authStoreSelector(state).user
+export const isAuthLoadedSelector = (state) => state.firebase.auth.isLoaded
 
-export const emailSelector = (state) => userSelector(state)?.email
+export const isLoggedInSelector = (state) => Boolean(state.firebase.auth.uid)
 
-export const firstNameSelector = (state) => userSelector(state)?.firstName
+export const accessTokenSelector = (state) =>
+    state.firebase.auth?.stsTokenManager?.accessToken ?? null
 
-export const lastNameSelector = (state) => userSelector(state)?.lastName
+export const roleSelector = (state) => state.firebase.profile?.role ?? null
 
-export const nameSelector = (state) => userSelector(state)?.name
+export const isEmailVerifiedSelector = (state) =>
+    state.firebase.auth?.emailVerified ?? false
 
-export const pictureSelector = (state) => userSelector(state)?.picture
+export const authErrorCodeSelector = (state) =>
+    state.firebase.authError?.code ?? null
 
-export const isVerifiedSelector = (state) =>
-    userSelector(state)?.isVerified ?? false
+export const authErrorMessageSelector = (state) => {
+    const errorCode = authErrorCodeSelector(state)
+    if (!errorCode) return null
+
+    return getErrorMessage(errorCode)
+}
+
+export const errorCountSelector = (state) => state.firebase.errors?.length

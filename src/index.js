@@ -2,57 +2,105 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import { lazy, Suspense } from 'react'
+import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Auth0Provider } from '@auth0/auth0-react'
+import { Provider, useSelector } from 'react-redux'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from 'react-router-dom'
 import LogRocket from 'logrocket'
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/auth'
+import 'firebase/compat/firestore'
+import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
+import { createFirestoreInstance } from 'redux-firestore'
 
 import { FontFamily } from 'constants/Typography'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Loader from 'components/Loader'
-import { AUTH0_AUDIENCE, AUTH0_CLIENT_ID, AUTH0_DOMAIN } from 'flux/ducks/auth'
 import configureStore from 'flux/store'
-import routes from 'routes'
+import routes, { TitledRoute } from 'routes'
+import {
+    Roles,
+    isLoggedInSelector,
+    isAuthLoadedSelector,
+} from 'flux/ducks/auth'
+import { profileIsLoadedSelector } from 'flux/ducks/profile'
 
 if (process.env.NODE_ENV !== 'development') {
     LogRocket.init('your/logrocket/client-key')
 }
+
+firebase.initializeApp({
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    apiKey: process.env.FIREBASE_API_KEY,
+})
+firebase.firestore()
 
 const store = configureStore()
 
 const App = lazy(() => import('containers/App'))
 const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
 
+const AuthAndRoleIsLoaded = ({ children }) => {
+    const isAuthLoaded = useSelector(isAuthLoadedSelector)
+    const isLoggedIn = useSelector(isLoggedInSelector)
+    const profileIsLoaded = useSelector(profileIsLoadedSelector)
+    if (!isAuthLoaded || (isLoggedIn && !profileIsLoaded))
+        return <Loader isStretchy={true} />
+    return children
+}
+
+AuthAndRoleIsLoaded.propTypes = {
+    children: PropTypes.node.isRequired,
+}
+
 ReactDOM.render(
     <div id="app" style={{ fontFamily: FontFamily }}>
         <ErrorBoundary tag="root">
-            <Auth0Provider
-                audience={AUTH0_AUDIENCE}
-                domain={AUTH0_DOMAIN}
-                clientId={AUTH0_CLIENT_ID}
-                useRefreshTokens={true}
-                redirectUri={`${window.location.origin}${routes.PROTECTED_HOME}`}
+            <ReactReduxFirebaseProvider
+                firebase={firebase}
+                config={{
+                    userProfile: 'users',
+                    updateProfileOnLogin: false,
+                    useFirestoreForProfile: true,
+                    enableClaims: true,
+                }}
+                dispatch={store.dispatch}
+                createFirestoreInstance={createFirestoreInstance}
             >
                 <Provider store={store}>
                     <Router>
-                        <Suspense fallback={<Loader isStretchy={true} />}>
-                            <Switch>
-                                <Route
-                                    exact
-                                    path={routes.HOME}
-                                    component={App}
-                                />
-                                <Route
-                                    exact
-                                    path={routes.PROTECTED_HOME}
-                                    component={ProtectedApp}
-                                />
-                            </Switch>
-                        </Suspense>
+                        <AuthAndRoleIsLoaded>
+                            <Suspense fallback={<Loader isStretchy={true} />}>
+                                <Switch>
+                                    <Route
+                                        exact
+                                        path={routes.HOME}
+                                        component={App}
+                                    />
+                                    <TitledRoute
+                                        exact
+                                        path={routes.ROLE_1_ROUTE}
+                                        component={ProtectedApp}
+                                        requiredRoles={[Roles.ROLE_1]}
+                                    />
+                                    <TitledRoute
+                                        exact
+                                        path={routes.ROLE_2_ROUTE}
+                                        component={ProtectedApp}
+                                        requiredRoles={[Roles.ROLE_2]}
+                                    />
+                                    <Redirect to={routes.HOME} />
+                                </Switch>
+                            </Suspense>
+                        </AuthAndRoleIsLoaded>
                     </Router>
                 </Provider>
-            </Auth0Provider>
+            </ReactReduxFirebaseProvider>
         </ErrorBoundary>
     </div>,
     document.getElementById('root'),

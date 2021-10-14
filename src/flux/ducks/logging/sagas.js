@@ -1,7 +1,6 @@
 import { takeEvery } from 'redux-saga/effects'
 import LogRocket from 'logrocket'
-
-import { handleLogin } from 'flux/ducks/auth'
+import { constants } from 'react-redux-firebase'
 
 const identifyToLogrocket = ({
     payload: {
@@ -15,6 +14,6 @@ const identifyToLogrocket = ({
 
 export default function* loggingWatcherSaga() {
     if (process.env.NODE_ENV !== 'development') {
-        yield takeEvery(handleLogin, identifyToLogrocket)
+        yield takeEvery(constants.actionTypes.LOGIN, identifyToLogrocket)
     }
 }

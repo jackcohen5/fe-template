@@ -9,9 +9,12 @@ const BUILD_DIR = resolve(__dirname, '.dist')
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
 const isDevelopment = env === 'development'
 
+// eslint-disable-next-line no-console
+console.log(`FE Template: Building environment ${env}...`)
+
 module.exports = {
     entry: './src/index.js',
-    mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+    mode: env,
     module: {
         rules: [
             {
@@ -37,9 +40,11 @@ module.exports = {
     },
     plugins: [
         new webpack.ProgressPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(env),
-        }),
+        new webpack.EnvironmentPlugin([
+            'NODE_ENV',
+            'FIREBASE_PROJECT_ID',
+            'FIREBASE_API_KEY',
+        ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: resolve(__dirname, 'src', 'index.html'),

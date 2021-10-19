@@ -41,9 +41,10 @@ module.exports = {
     plugins: [
         new webpack.ProgressPlugin(),
         new webpack.EnvironmentPlugin([
-            'NODE_ENV',
             'FIREBASE_PROJECT_ID',
             'FIREBASE_API_KEY',
+            'LOGROCKET_CLIENT_KEY',
+            'NODE_ENV',
         ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({

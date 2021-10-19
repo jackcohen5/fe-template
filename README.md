@@ -1,6 +1,6 @@
 # FE App Template
 
-[![CircleCI](https://circleci.com/gh/jackcohen5/fe-template.svg?style=svg)](https://circleci.com/gh/jackcohen5/fe-template)
+![Build Status](https://github.com/jackcohen5/fe-template/actions/workflows/build.yaml/badge.svg?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jackcohen5/fe-template)](https://dependabot.com)
 
 ## Features

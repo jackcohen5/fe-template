@@ -31,7 +31,7 @@ import {
 import { profileIsLoadedSelector } from 'flux/ducks/profile'
 
 if (process.env.NODE_ENV !== 'development') {
-    LogRocket.init('your/logrocket/client-key')
+    LogRocket.init(process.env.LOGROCKET_CLIENT_KEY)
 }
 
 firebase.initializeApp({

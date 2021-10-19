@@ -29,7 +29,7 @@ jobs:
     - run: yarn install
     - run: yarn test
   build:
-    name: Package functions
+    name: Build application
     runs-on: ubuntu-latest
     steps:
     - name: Checkout

@@ -17,6 +17,12 @@ export const useLogin = () => {
             .catch((e) => toast.error(getErrorMessage(e.code)))
 }
 
+export const useLogout = () => {
+    const history = useHistory()
+    const firebase = useFirebase()
+    return () => firebase.logout().then(() => history.push(routes.LOGIN))
+}
+
 export const useSignUp = (role = Roles.ROLE_1) => {
     const Fetch = useFetch()
     const history = useHistory()

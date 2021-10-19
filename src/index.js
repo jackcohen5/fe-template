@@ -5,12 +5,7 @@ import { lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
 import { Provider, useSelector } from 'react-redux'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import LogRocket from 'logrocket'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/auth'
@@ -79,20 +74,22 @@ ReactDOM.render(
                         <AuthAndRoleIsLoaded>
                             <Suspense fallback={<Loader isStretchy={true} />}>
                                 <Switch>
-                                    <Route
+                                    <TitledRoute
                                         exact
                                         path={routes.HOME}
                                         component={App}
                                     />
-                                    <Route
+                                    <TitledRoute
                                         exact
                                         path={routes.LOGIN}
                                         component={Login}
+                                        publicOnly
                                     />
-                                    <Route
+                                    <TitledRoute
                                         exact
                                         path={routes.SIGN_UP}
                                         component={SignUp}
+                                        publicOnly
                                     />
                                     <TitledRoute
                                         exact

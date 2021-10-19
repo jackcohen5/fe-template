@@ -2,11 +2,7 @@ import { takeEvery } from 'redux-saga/effects'
 import LogRocket from 'logrocket'
 import { constants } from 'react-redux-firebase'
 
-const identifyToLogrocket = ({
-    payload: {
-        user: { email },
-    },
-}) => {
+const identifyToLogrocket = ({ auth: { email } }) => {
     LogRocket.identify(email, {
         email,
     })

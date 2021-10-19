@@ -2,7 +2,8 @@ const { resolve } = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack'),
-    ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+    ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
+    Dotenv = require('dotenv-webpack')
 
 const BUILD_DIR = resolve(__dirname, '.dist')
 
@@ -40,12 +41,14 @@ module.exports = {
     },
     plugins: [
         new webpack.ProgressPlugin(),
-        new webpack.EnvironmentPlugin([
-            'FIREBASE_PROJECT_ID',
-            'FIREBASE_API_KEY',
-            'LOGROCKET_CLIENT_KEY',
-            'NODE_ENV',
-        ]),
+        isDevelopment
+            ? new Dotenv()
+            : new webpack.EnvironmentPlugin([
+                  'FIREBASE_PROJECT_ID',
+                  'FIREBASE_API_KEY',
+                  'LOGROCKET_CLIENT_KEY',
+                  'NODE_ENV',
+              ]),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: resolve(__dirname, 'src', 'index.html'),

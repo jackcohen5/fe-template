@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
-import { useFirebase } from 'react-redux-firebase'
 
 import routes from 'routes'
 import Button from 'components/Button'
 import {
     isAuthLoadedSelector,
     isLoggedInSelector,
-} from 'flux/ducks/auth/selectors'
+    useLogout,
+} from 'flux/ducks/auth'
 import { fullNameSelector } from 'flux/ducks/profile/selectors'
 
 import { ButtonWrapper, Container, AvatarImg } from './Navbar.styles'
@@ -15,8 +15,7 @@ import { ButtonWrapper, Container, AvatarImg } from './Navbar.styles'
 const useNavbarAuth = () => {
     const isLoggedIn = useSelector(isLoggedInSelector)
     const fullName = useSelector(fullNameSelector)
-    const firebase = useFirebase()
-    const logout = () => firebase.logout()
+    const logout = useLogout()
 
     return { isLoggedIn, fullName, logout }
 }

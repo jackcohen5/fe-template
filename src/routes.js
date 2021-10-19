@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Route, Redirect } from 'react-router-dom'
 
-import { isLoggedInSelector } from 'flux/ducks/auth/selectors'
-import { Roles, roleSelector } from 'flux/ducks/auth'
+import { isLoggedInSelector, Roles, roleSelector } from 'flux/ducks/auth'
 
 export const routes = {
     HOME: '/',
@@ -33,12 +32,19 @@ export const TitledRoute = ({
     component,
     path,
     requiredRoles,
+    publicOnly,
     ...routeProps
 }) => {
-    const isAuthorizedRoute = requiredRoles.length
     const isLoggedIn = useSelector(isLoggedInSelector)
     const role = useSelector(roleSelector)
-    if (isAuthorizedRoute && (!isLoggedIn || !requiredRoles.includes(role))) {
+    if (
+        requiredRoles.length &&
+        (!isLoggedIn || !requiredRoles.includes(role))
+    ) {
+        return <Redirect to={routes.LOGIN} />
+    }
+
+    if (publicOnly && isLoggedIn) {
         return <Redirect to={routes.HOME} />
     }
 
@@ -62,9 +68,10 @@ export const TitledRoute = ({
 TitledRoute.propTypes = {
     component: PropTypes.elementType.isRequired,
     path: PropTypes.string.isRequired,
+    publicOnly: PropTypes.bool,
     requiredRoles: PropTypes.arrayOf(PropTypes.oneOfType(Roles)),
 }
 
-TitledRoute.defaultProps = { requiredRoles: [] }
+TitledRoute.defaultProps = { publicOnly: false, requiredRoles: [] }
 
 export default routes

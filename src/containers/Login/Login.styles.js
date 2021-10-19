@@ -52,7 +52,7 @@ export const ButtonSeparatorContainer = styled.div`
     align-items: center;
 `
 export const ButtonSeparator = styled.div`
-    border-bottom: 1px solid ${Colours.Link};
+    border-bottom: 1px solid ${Colours.Secondary};
     height: 0px;
     flex-grow: 1;
 `
@@ -63,16 +63,8 @@ export const ButtonSeparatorText = styled.div`
     justify-content: center;
     text-align: center;
     margin: 10px;
-    color: ${Colours.Link};
+    color: ${Colours.Secondary};
     flex-shrink: 1;
-
-    &:before {
-        border: 1px solid red;
-    }
-
-    &:after {
-        border: 1px solid blue;
-    }
 `
 
 export const LoginAction = styled(Button)`

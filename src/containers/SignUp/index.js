@@ -33,7 +33,7 @@ const SignUp = () => {
             <Navbar />
             <LoginContainer>
                 <LoginForm onSubmit={handleSubmit(signUp)}>
-                    <LoginFormTitle>Sign Up to get started</LoginFormTitle>
+                    <LoginFormTitle>Sign up to get started</LoginFormTitle>
                     <LoginFormSubtitle>
                         Enter your details to proceed further
                     </LoginFormSubtitle>

@@ -12,12 +12,12 @@ const InputText = styled.input.attrs(({ ariaLabel, type, ...inputProps }) => ({
     width: calc(100% - 40px);
     border-radius: 4px;
     border: 1px solid
-        ${(props) => (props.hasError ? Colours.Danger : Colours.Border)};
+        ${(props) => (props.hasError ? Colours.Danger : Colours.Primary)};
     font-size: ${FontSize.MD};
 
     &:focus {
         border-color: ${(props) =>
-            props.hasError ? Colours.Danger : Colours.BorderActive};
+            props.hasError ? Colours.Danger : Colours.Secondary};
         outline: 0;
     }
 `

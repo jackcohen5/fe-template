@@ -73,7 +73,6 @@ export const Login = () => {
                     </ButtonSeparatorContainer>
                     <LoginInputContainer>
                         <LoginAction
-                            theme={Themes.Secondary}
                             onClick={() => history.push(routes.SIGN_UP)}
                         >
                             Sign up

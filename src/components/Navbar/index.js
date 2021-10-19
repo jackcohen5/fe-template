@@ -3,6 +3,7 @@ import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 
 import routes from 'routes'
 import Button from 'components/Button'
+import Link from 'components/Link'
 import {
     isAuthLoadedSelector,
     isLoggedInSelector,
@@ -49,7 +50,7 @@ export const Navbar = () => {
     const navActions = useNavActions()
     return (
         <Container>
-            <RouterLink to={routes.HOME}>FE Template</RouterLink>
+            <Link to={routes.HOME} label="FE Template" />
             {isAuthLoaded ? <ButtonWrapper>{navActions}</ButtonWrapper> : null}
         </Container>
     )

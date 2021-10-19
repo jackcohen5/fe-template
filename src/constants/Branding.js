@@ -4,10 +4,10 @@ export const Themes = {
 }
 
 export const Colours = {
-    Primary: '#3b5998',
-    Secondary: '#4CAF50',
+    Primary: '#3B5998',
+    Secondary: '#E5A670',
     White: '#FFF',
     Black: '#000',
-    Blue: '#0645AD',
+    Link: '#E5D543',
     Danger: 'rgb(158, 26, 26)',
 }

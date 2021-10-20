@@ -43,12 +43,12 @@ module.exports = {
         new webpack.ProgressPlugin(),
         isDevelopment
             ? new Dotenv()
-            : new webpack.EnvironmentPlugin([
-                  'FIREBASE_PROJECT_ID',
-                  'FIREBASE_API_KEY',
-                  'LOGROCKET_CLIENT_KEY',
-                  'NODE_ENV',
-              ]),
+            : new webpack.EnvironmentPlugin({
+                  FIREBASE_PROJECT_ID: 'dummy-firebase-project-id',
+                  FIREBASE_API_KEY: 'dummy-firebase-api-key',
+                  LOGROCKET_CLIENT_KEY: 'dummy-logrocket-clilent-key',
+                  NODE_ENV: 'development',
+              }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: resolve(__dirname, 'src', 'index.html'),

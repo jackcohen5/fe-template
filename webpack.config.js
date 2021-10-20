@@ -46,7 +46,7 @@ module.exports = {
             : new webpack.EnvironmentPlugin({
                   FIREBASE_PROJECT_ID: 'dummy-firebase-project-id',
                   FIREBASE_API_KEY: 'dummy-firebase-api-key',
-                  LOGROCKET_CLIENT_KEY: 'dummy-logrocket-clilent-key',
+                  LOGROCKET_CLIENT_KEY: 'dummy-logrocket-client-key',
                   NODE_ENV: 'development',
               }),
         new CleanWebpackPlugin(),

@@ -69,7 +69,7 @@ TitledRoute.propTypes = {
     component: PropTypes.elementType.isRequired,
     path: PropTypes.string.isRequired,
     publicOnly: PropTypes.bool,
-    requiredRoles: PropTypes.arrayOf(PropTypes.oneOfType(Roles)),
+    requiredRoles: PropTypes.arrayOf(PropTypes.oneOf(Object.values(Roles))),
 }
 
 TitledRoute.defaultProps = { publicOnly: false, requiredRoles: [] }

@@ -10,7 +10,6 @@ import {
     hasTriggeredExampleApiSelector,
 } from 'flux/ducks/apiExample'
 import { exampleAction, hasTriggeredExampleSelector } from 'flux/ducks/example'
-import { Roles } from 'flux/ducks/auth'
 
 import { AppContainer } from './App.styles'
 import ExampleAction from './ExampleAction'
@@ -34,8 +33,7 @@ export const UnwrappedApp = ({
         exampleApiResult,
         hasTriggeredExampleApi,
     })
-    const linkParams1 = useLinkParams()
-    const linkParams2 = useLinkParams(Roles.ROLE_2)
+    const linkParams = useLinkParams()
     return (
         <>
             <Navbar title="FE Template" />
@@ -49,8 +47,7 @@ export const UnwrappedApp = ({
                     buttonLabel="Trigger API Call"
                     {...exampleApiActionProps}
                 />
-                <Link {...linkParams1} />
-                <Link {...linkParams2} />
+                <Link {...linkParams} />
             </AppContainer>
         </>
     )

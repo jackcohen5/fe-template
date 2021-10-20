@@ -1,6 +1,6 @@
 # FE App Template
 
-[![CircleCI](https://circleci.com/gh/jackcohen5/fe-template.svg?style=svg)](https://circleci.com/gh/jackcohen5/fe-template)
+![Build Status](https://github.com/jackcohen5/fe-template/actions/workflows/build.yml/badge.svg?branch=master)
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jackcohen5/fe-template)](https://dependabot.com)
 
 ## Features
@@ -23,3 +23,10 @@ You can install Yarn [directly](https://yarnpkg.com/en/docs/install) or with [yv
 
 * `yarn start`
 * visit `http://localhost:3000/`
+
+---
+**NOTE**
+
+You will need to setup a project in Firebase and create a .env file or the above command will fail. When you are ready to use this template, follow the steps in the [ejection documentation](docs/EJECTION.md).
+
+---

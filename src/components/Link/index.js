@@ -7,7 +7,7 @@ import { Colours } from 'constants/Branding'
 const getTextColor = (theme) => {
     switch (theme) {
         default:
-            return Colours.Blue
+            return Colours.Link
     }
 }
 

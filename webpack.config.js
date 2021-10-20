@@ -2,16 +2,20 @@ const { resolve } = require('path'),
     { CleanWebpackPlugin } = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack'),
-    ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
+    ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
+    Dotenv = require('dotenv-webpack')
 
 const BUILD_DIR = resolve(__dirname, '.dist')
 
 const env = process.env.NODE_ENV ? process.env.NODE_ENV : 'development'
 const isDevelopment = env === 'development'
 
+// eslint-disable-next-line no-console
+console.log(`FE Template: Building environment ${env}...`)
+
 module.exports = {
     entry: './src/index.js',
-    mode: process.env.NODE_ENV ? process.env.NODE_ENV : 'development',
+    mode: env,
     module: {
         rules: [
             {
@@ -32,20 +36,27 @@ module.exports = {
     },
     output: {
         path: BUILD_DIR,
+        publicPath: '/',
         filename: '[name]-[chunkhash].bundle.js',
     },
     plugins: [
         new webpack.ProgressPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify(env),
-        }),
+        isDevelopment
+            ? new Dotenv()
+            : new webpack.EnvironmentPlugin({
+                  FIREBASE_PROJECT_ID: 'dummy-firebase-project-id',
+                  FIREBASE_API_KEY: 'dummy-firebase-api-key',
+                  LOGROCKET_CLIENT_KEY: 'dummy-logrocket-client-key',
+                  NODE_ENV: 'development',
+              }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: 'FE Template',
             template: resolve(__dirname, 'src', 'index.html'),
         }),
         isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
-        isDevelopment ? new ReactRefreshWebpackPlugin() : null,
+        isDevelopment
+            ? new ReactRefreshWebpackPlugin({ overlay: false })
+            : null,
     ].filter(Boolean),
     watchOptions: {
         ignored: /node_modules/,
@@ -61,4 +72,5 @@ module.exports = {
             },
         },
     },
+    devtool: 'source-map',
 }

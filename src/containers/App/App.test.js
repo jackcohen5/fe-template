@@ -1,7 +1,9 @@
 import { render, screen } from '@testing-library/react'
 import UserEvent from '@testing-library/user-event'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router, useLocation } from 'react-router-dom'
 
+import configureStore from 'flux/store'
 import routes from 'routes'
 
 import { UnwrappedApp as App } from '.'
@@ -20,11 +22,15 @@ const defaultProps = {
     exampleApiResult: '',
 }
 
+const store = configureStore()
+
 const renderComponent = (props = {}) =>
     render(
-        <Router>
-            <App {...defaultProps} {...props} />
-        </Router>,
+        <Provider store={store}>
+            <Router>
+                <App {...defaultProps} {...props} />
+            </Router>
+        </Provider>,
     )
 
 describe('App', () => {
@@ -102,9 +108,10 @@ describe('App', () => {
     })
 
     it.each`
-        currentRoute             | label        | expectedRoute
-        ${routes.HOME}           | ${'private'} | ${routes.PROTECTED_HOME}
-        ${routes.PROTECTED_HOME} | ${'public'}  | ${routes.HOME}
+        currentRoute           | label       | expectedRoute
+        ${routes.HOME}         | ${'role 1'} | ${routes.ROLE_1_ROUTE}
+        ${routes.ROLE_1_ROUTE} | ${'public'} | ${routes.HOME}
+        ${routes.ROLE_2_ROUTE} | ${'public'} | ${routes.HOME}
     `(
         'Displays a link to $expectedRoute when current route is $currentRoute',
         ({ currentRoute, label, expectedRoute }) => {

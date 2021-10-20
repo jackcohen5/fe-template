@@ -1,17 +1,59 @@
-import PropTypes from 'prop-types'
+import { useSelector } from 'react-redux'
+import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 
-import { Container, TextContainer } from './Navbar.styles'
+import routes from 'routes'
+import Button from 'components/Button'
+import Link from 'components/Link'
+import {
+    isAuthLoadedSelector,
+    isLoggedInSelector,
+    useLogout,
+} from 'flux/ducks/auth'
+import { fullNameSelector } from 'flux/ducks/profile/selectors'
 
-export const Navbar = ({ title }) => {
-    return (
-        <Container>
-            <TextContainer>{title}</TextContainer>
-        </Container>
-    )
+import { ButtonWrapper, Container, AvatarImg } from './Navbar.styles'
+
+const useNavbarAuth = () => {
+    const isLoggedIn = useSelector(isLoggedInSelector)
+    const fullName = useSelector(fullNameSelector)
+    const logout = useLogout()
+
+    return { isLoggedIn, fullName, logout }
 }
 
-Navbar.propTypes = {
-    title: PropTypes.string.isRequired,
+const useNavActions = () => {
+    const { isLoggedIn, fullName, logout } = useNavbarAuth()
+    const { path } = useRouteMatch()
+
+    if (isLoggedIn) {
+        return fullName ? (
+            <>
+                <AvatarImg src="/default-avatar.png" alt="Avatar" />
+                <Button onClick={logout} ariaLabel="Login">
+                    Logout
+                </Button>
+            </>
+        ) : null
+    } else {
+        return path === routes.LOGIN ? null : (
+            <>
+                <RouterLink to={routes.LOGIN}>
+                    <Button ariaLabel="Login">Login</Button>
+                </RouterLink>
+            </>
+        )
+    }
+}
+
+export const Navbar = () => {
+    const isAuthLoaded = useSelector(isAuthLoadedSelector)
+    const navActions = useNavActions()
+    return (
+        <Container>
+            <Link to={routes.HOME} label="FE Template" />
+            {isAuthLoaded ? <ButtonWrapper>{navActions}</ButtonWrapper> : null}
+        </Container>
+    )
 }
 
 export { NavbarHeight } from './Navbar.constants'

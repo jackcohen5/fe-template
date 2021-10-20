@@ -1,16 +1,11 @@
-const authStoreSelector = (state) => state.auth
+export const isAuthLoadedSelector = (state) => state.firebase.auth.isLoaded
 
-export const userSelector = (state) => authStoreSelector(state).user
+export const isLoggedInSelector = (state) => Boolean(state.firebase.auth.uid)
 
-export const emailSelector = (state) => userSelector(state)?.email
+export const accessTokenSelector = (state) =>
+    state.firebase.auth?.stsTokenManager?.accessToken ?? null
 
-export const firstNameSelector = (state) => userSelector(state)?.firstName
+export const roleSelector = (state) => state.firebase.profile?.role ?? null
 
-export const lastNameSelector = (state) => userSelector(state)?.lastName
-
-export const nameSelector = (state) => userSelector(state)?.name
-
-export const pictureSelector = (state) => userSelector(state)?.picture
-
-export const isVerifiedSelector = (state) =>
-    userSelector(state)?.isVerified ?? false
+export const isEmailVerifiedSelector = (state) =>
+    state.firebase.auth?.emailVerified ?? false

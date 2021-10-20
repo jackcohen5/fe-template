@@ -1,8 +1,22 @@
 import { useCallback } from 'react'
+import { useSelector } from 'react-redux'
+
+import { accessTokenSelector } from 'flux/ducks/auth'
+
+export class APIError extends Error {
+    constructor(message, body, status) {
+        super()
+        this.message = message
+        this.body = body
+        this.status = status
+    }
+}
 
 export const useFetch = () => {
+    const accessToken = useSelector(accessTokenSelector)
     return useCallback(({ body, method, query, path, url }) =>
         Fetch({
+            accessToken,
             body,
             method,
             path,
@@ -29,7 +43,13 @@ const Fetch = ({ accessToken, body, method, path, query, url }) => {
             : undefined,
     }).then((response) => {
         if (!response.ok) {
-            throw new Error(`Request failed with status ${response.status}`)
+            return response.json().then((body) => {
+                throw new APIError(
+                    `Request failed with status ${response.status}`,
+                    body,
+                    response.status,
+                )
+            })
         }
         return response.json()
     })

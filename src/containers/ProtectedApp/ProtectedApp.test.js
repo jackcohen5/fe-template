@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
 import UserEvent from '@testing-library/user-event'
+import { useFirebase } from 'react-redux-firebase'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 
-import { useHandleLogin } from './hooks'
-
 import { UnwrappedProtectedApp as ProtectedApp } from '.'
 
+jest.mock('react-redux-firebase')
 jest.mock('containers/App', () => {
     return {
         __esModule: true,
@@ -16,10 +16,8 @@ jest.mock('containers/App', () => {
     }
 })
 
-jest.mock('./hooks')
-
 const defaultProps = {
-    isVerified: true,
+    isEmailVerified: true,
 }
 
 const renderComponent = (props = {}) =>
@@ -34,18 +32,18 @@ describe('ProtectedApp', () => {
     beforeEach(() => {
         jest.resetAllMocks()
         mockLogout = jest.fn()
-        useHandleLogin.mockReturnValue({
+        useFirebase.mockReturnValue({
             logout: mockLogout,
         })
     })
 
     it('Renders app container if verified', () => {
-        renderComponent({ isVerified: true })
+        renderComponent({ isEmailVerified: true })
         expect(screen.getByText('App Container')).toBeDefined()
     })
 
     it('Renders verification prompt if unverified', () => {
-        renderComponent({ isVerified: false })
+        renderComponent({ isEmailVerified: false })
         expect(
             screen.getByText('Check your inbox for your verification email.'),
         ).toBeDefined()

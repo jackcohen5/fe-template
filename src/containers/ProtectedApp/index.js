@@ -1,19 +1,17 @@
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { withAuthenticationRequired } from '@auth0/auth0-react'
+import { useFirebase } from 'react-redux-firebase'
 
 import App from 'containers/App'
-import { isVerifiedSelector } from 'flux/ducks/auth'
+import { isEmailVerifiedSelector } from 'flux/ducks/auth'
 import Button from 'components/Button'
-import Loader from 'components/Loader'
-import routes from 'routes'
-
-import { useHandleLogin } from './hooks'
 
 import { AppContainer } from './ProtectedApp.styles'
 
-export const UnwrappedProtectedApp = ({ isVerified }) => {
-    const { logout } = useHandleLogin()
+export const UnwrappedProtectedApp = ({ isEmailVerified }) => {
+    const firebase = useFirebase()
+    const logout = () => firebase.logout()
+
     const logoutButton = (
         <Button
             ariaLabel="Logout"
@@ -26,7 +24,7 @@ export const UnwrappedProtectedApp = ({ isVerified }) => {
 
     return (
         <AppContainer>
-            {isVerified ? (
+            {isEmailVerified ? (
                 <>
                     <App />
                     {logoutButton}
@@ -43,17 +41,11 @@ export const UnwrappedProtectedApp = ({ isVerified }) => {
 }
 
 UnwrappedProtectedApp.propTypes = {
-    isVerified: PropTypes.bool.isRequired,
+    isEmailVerified: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = (state) => ({
-    isVerified: isVerifiedSelector(state),
+    isEmailVerified: isEmailVerifiedSelector(state),
 })
 
-export default withAuthenticationRequired(
-    connect(mapStateToProps)(UnwrappedProtectedApp),
-    {
-        returnTo: routes.PRIVATE,
-        onRedirecting: () => <Loader isStretchy={true} />,
-    },
-)
+export default connect(mapStateToProps)(UnwrappedProtectedApp)

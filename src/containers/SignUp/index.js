@@ -8,15 +8,15 @@ import routes from 'routes'
 
 import {
     AlreadySignedUpContainer,
-    InlineLoginInputText,
-    LoginContainer,
-    LoginForm,
+    InlineSignUpInputText,
+    SignUpContainer,
+    SignUpForm,
     LoginLink,
-    LoginFormTitle,
-    LoginFormSubtitle,
-    LoginInputContainer,
-    LoginInputText,
-    LoginAction,
+    SignUpFormTitle,
+    SignUpFormSubtitle,
+    SignUpInputContainer,
+    SignUpInputText,
+    SignUpAction,
 } from './SignUp.styles'
 
 const SignUp = () => {
@@ -31,18 +31,18 @@ const SignUp = () => {
     return (
         <>
             <Navbar />
-            <LoginContainer>
-                <LoginForm onSubmit={handleSubmit(signUp)}>
-                    <LoginFormTitle>Sign up to get started</LoginFormTitle>
-                    <LoginFormSubtitle>
+            <SignUpContainer>
+                <SignUpForm onSubmit={handleSubmit(signUp)}>
+                    <SignUpFormTitle>Sign up to get started</SignUpFormTitle>
+                    <SignUpFormSubtitle>
                         Enter your details to proceed further
-                    </LoginFormSubtitle>
+                    </SignUpFormSubtitle>
                     <AlreadySignedUpContainer>
                         <span>Already have an account?</span>
                         <LoginLink to={routes.LOGIN} label="Login" />
                     </AlreadySignedUpContainer>
-                    <LoginInputContainer>
-                        <LoginInputText
+                    <SignUpInputContainer>
+                        <SignUpInputText
                             placeholder="Email"
                             name="email"
                             type="email"
@@ -56,9 +56,9 @@ const SignUp = () => {
                                 },
                             })}
                         />
-                    </LoginInputContainer>
-                    <LoginInputContainer>
-                        <InlineLoginInputText
+                    </SignUpInputContainer>
+                    <SignUpInputContainer>
+                        <InlineSignUpInputText
                             placeholder="First Name"
                             name="firstName"
                             type="firstName"
@@ -67,7 +67,7 @@ const SignUp = () => {
                                 required: true,
                             })}
                         />
-                        <LoginInputText
+                        <SignUpInputText
                             placeholder="Last Name"
                             name="lastName"
                             type="lastName"
@@ -76,9 +76,9 @@ const SignUp = () => {
                                 required: true,
                             })}
                         />
-                    </LoginInputContainer>
-                    <LoginInputContainer>
-                        <LoginInputText
+                    </SignUpInputContainer>
+                    <SignUpInputContainer>
+                        <SignUpInputText
                             placeholder="Password"
                             name="password"
                             type="password"
@@ -88,9 +88,9 @@ const SignUp = () => {
                                 validate: (value) => value.length >= 6,
                             })}
                         />
-                    </LoginInputContainer>
-                    <LoginInputContainer>
-                        <LoginInputText
+                    </SignUpInputContainer>
+                    <SignUpInputContainer>
+                        <SignUpInputText
                             placeholder="Confirm Password"
                             name="confirmPassword"
                             type="password"
@@ -100,14 +100,14 @@ const SignUp = () => {
                                 validate: (value) => value === currentPassword,
                             })}
                         />
-                    </LoginInputContainer>
-                    <LoginInputContainer>
-                        <LoginAction theme={Themes.Primary} type="submit">
+                    </SignUpInputContainer>
+                    <SignUpInputContainer>
+                        <SignUpAction theme={Themes.Primary} type="submit">
                             Sign Up
-                        </LoginAction>
-                    </LoginInputContainer>
-                </LoginForm>
-            </LoginContainer>
+                        </SignUpAction>
+                    </SignUpInputContainer>
+                </SignUpForm>
+            </SignUpContainer>
             <Toaster />
         </>
     )

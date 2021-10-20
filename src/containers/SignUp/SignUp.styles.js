@@ -5,7 +5,7 @@ import { Colours } from 'constants/Branding'
 import InputText from 'components/InputText'
 import Link from 'components/Link'
 
-export const LoginContainer = styled.main`
+export const SignUpContainer = styled.main`
     width: calc(100% - 30px);
 
     display: flex;
@@ -19,7 +19,7 @@ export const LoginContainer = styled.main`
     max-width: 1140px;
 `
 
-export const LoginForm = styled.form`
+export const SignUpForm = styled.form`
     background: ${Colours.White} 0 0 no-repeat padding-box;
     flex: 1 1 0px;
     padding: 15px;
@@ -29,17 +29,17 @@ export const LoginForm = styled.form`
     align-items: stretch;
 `
 
-export const LoginFormTitle = styled.h1`
+export const SignUpFormTitle = styled.h1`
     color: ${Colours.Primary};
     margin: 0 0 10px;
 `
 
-export const LoginFormSubtitle = styled.p`
+export const SignUpFormSubtitle = styled.p`
     color: ${Colours.Secondary};
     margin: 0 0 50px;
 `
 
-export const LoginInputContainer = styled.div`
+export const SignUpInputContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,9 +53,9 @@ export const AlreadySignedUpContainer = styled.div`
     align-items: center;
 `
 
-export const LoginInputText = styled(InputText)``
+export const SignUpInputText = styled(InputText)``
 
-export const InlineLoginInputText = styled(InputText)`
+export const InlineSignUpInputText = styled(InputText)`
     margin-right: 10px;
 `
 
@@ -63,6 +63,6 @@ export const LoginLink = styled(Link)`
     color: ${Colours.Primary};
 `
 
-export const LoginAction = styled(Button)`
+export const SignUpAction = styled(Button)`
     flex: 1;
 `

@@ -14,15 +14,10 @@
   "keywords": [],
   "author": "jackcohen5",
   "private": true,
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
-    "src/**/*.js": [
+    "src/**/*.(js|ts)": [
       "yarn lint",
-      "yarn test"
+      "yarn test --passWithNoTests"
     ]
   },
   "devDependencies": {

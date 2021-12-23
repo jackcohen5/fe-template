@@ -4,36 +4,28 @@ import 'regenerator-runtime/runtime'
 import { lazy, Suspense } from 'react'
 import PropTypes from 'prop-types'
 import ReactDOM from 'react-dom'
-import { Provider, useSelector } from 'react-redux'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import LogRocket from 'logrocket'
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
-import 'firebase/compat/firestore'
-import { ReactReduxFirebaseProvider } from 'react-redux-firebase'
-import { createFirestoreInstance } from 'redux-firestore'
+import {
+    FirebaseAppProvider,
+    AuthProvider,
+    useFirebaseApp,
+    FirestoreProvider,
+} from 'reactfire'
+import { getAuth } from 'firebase/auth'
+import { getFirestore } from 'firebase/firestore'
 
 import { FontFamily } from 'constants/Typography'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Loader from 'components/Loader'
 import configureStore from 'flux/store'
 import routes, { TitledRoute } from 'routes'
-import {
-    Roles,
-    isLoggedInSelector,
-    isAuthLoadedSelector,
-} from 'flux/ducks/auth'
-import { profileIsLoadedSelector } from 'flux/ducks/profile'
+import { Roles } from 'flux/ducks/auth'
 
 if (process.env.NODE_ENV !== 'development') {
     LogRocket.init(process.env.LOGROCKET_CLIENT_KEY)
 }
-
-firebase.initializeApp({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    apiKey: process.env.FIREBASE_API_KEY,
-})
-firebase.firestore()
 
 const store = configureStore()
 
@@ -42,36 +34,33 @@ const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
 const Login = lazy(() => import('containers/Login'))
 const SignUp = lazy(() => import('containers/SignUp'))
 
-const AuthAndRoleIsLoaded = ({ children }) => {
-    const isAuthLoaded = useSelector(isAuthLoadedSelector)
-    const isLoggedIn = useSelector(isLoggedInSelector)
-    const profileIsLoaded = useSelector(profileIsLoadedSelector)
-    if (!isAuthLoaded || (isLoggedIn && !profileIsLoaded))
-        return <Loader isStretchy={true} />
-    return children
+const WrappedFirebaseProvider = ({ children }) => {
+    const Firebase = useFirebaseApp()
+    return (
+        <AuthProvider sdk={getAuth(Firebase)}>
+            <FirestoreProvider sdk={getFirestore(Firebase)}>
+                {children}
+            </FirestoreProvider>
+        </AuthProvider>
+    )
 }
 
-AuthAndRoleIsLoaded.propTypes = {
+WrappedFirebaseProvider.propTypes = {
     children: PropTypes.node.isRequired,
 }
 
 ReactDOM.render(
     <div id="app" style={{ fontFamily: FontFamily }}>
         <ErrorBoundary tag="root">
-            <ReactReduxFirebaseProvider
-                firebase={firebase}
-                config={{
-                    userProfile: 'users',
-                    updateProfileOnLogin: false,
-                    useFirestoreForProfile: true,
-                    enableClaims: true,
+            <FirebaseAppProvider
+                firebaseConfig={{
+                    projectId: process.env.FIREBASE_PROJECT_ID,
+                    apiKey: process.env.FIREBASE_API_KEY,
                 }}
-                dispatch={store.dispatch}
-                createFirestoreInstance={createFirestoreInstance}
             >
-                <Provider store={store}>
-                    <Router>
-                        <AuthAndRoleIsLoaded>
+                <WrappedFirebaseProvider>
+                    <Provider store={store}>
+                        <Router>
                             <Suspense fallback={<Loader isStretchy={true} />}>
                                 <Switch>
                                     <TitledRoute
@@ -106,10 +95,10 @@ ReactDOM.render(
                                     <Redirect to={routes.HOME} />
                                 </Switch>
                             </Suspense>
-                        </AuthAndRoleIsLoaded>
-                    </Router>
-                </Provider>
-            </ReactReduxFirebaseProvider>
+                        </Router>
+                    </Provider>
+                </WrappedFirebaseProvider>
+            </FirebaseAppProvider>
         </ErrorBoundary>
     </div>,
     document.getElementById('root'),

@@ -1,32 +1,53 @@
+import { useCallback } from 'react'
 import toast from 'react-hot-toast'
-import { useFirebase } from 'react-redux-firebase'
 import { useHistory } from 'react-router-dom'
+import { useFirebaseApp } from 'reactfire'
+import {
+    getAuth,
+    signInWithEmailAndPassword,
+    signInWithCustomToken,
+} from 'firebase/auth'
+import LogRocket from 'logrocket'
 
 import { getErrorMessage, Roles } from 'flux/ducks/auth'
 import { useFetch } from 'services/Fetch'
 import routes from 'routes'
 
-export const useLogin = () => {
+const useLoginSuccess = () => {
     const history = useHistory()
-    const firebase = useFirebase()
 
+    return useCallback(
+        ({ user: { email } }) => {
+            history.push(routes.HOME)
+            LogRocket.identify(email, { email })
+        },
+        [history],
+    )
+}
+
+export const useLogin = () => {
+    const onLoginSuccess = useLoginSuccess()
+    const Auth = getAuth(useFirebaseApp())
     return ({ email, password }) =>
-        firebase
-            .login({ email, password })
-            .then(() => history.push(routes.HOME))
+        signInWithEmailAndPassword(Auth, email, password)
+            .then(onLoginSuccess)
             .catch((e) => toast.error(getErrorMessage(e.code)))
 }
 
 export const useLogout = () => {
     const history = useHistory()
-    const firebase = useFirebase()
-    return () => firebase.logout().then(() => history.push(routes.LOGIN))
+    const Auth = getAuth(useFirebaseApp())
+    return () =>
+        Auth.signOut().then(() => {
+            history.push(routes.LOGIN)
+            window.location.reload()
+        })
 }
 
 export const useSignUp = (role = Roles.ROLE_1) => {
+    const onLoginSuccess = useLoginSuccess()
     const Fetch = useFetch()
-    const history = useHistory()
-    const firebase = useFirebase()
+    const Auth = getAuth(useFirebaseApp())
 
     return (signUpProps) => {
         signUpProps.role = role
@@ -36,13 +57,8 @@ export const useSignUp = (role = Roles.ROLE_1) => {
             method: 'POST',
             path: '/signUp',
         })
-            .then(({ token }) => firebase.login({ token }))
-            .then(() => {
-                delete signUpProps.password
-                delete signUpProps.confirmPassword
-                return firebase.updateProfile(signUpProps)
-            })
-            .then(() => history.push(routes.HOME))
+            .then(({ token }) => signInWithCustomToken(Auth, token))
+            .then(onLoginSuccess)
             .catch((e) => toast.error(getErrorMessage(e.body?.errorCode)))
     }
 }

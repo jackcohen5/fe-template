@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { Route, Redirect } from 'react-router-dom'
+import { useSigninCheck } from 'reactfire'
 
-import { isLoggedInSelector, Roles, roleSelector } from 'flux/ducks/auth'
+import { Roles } from 'flux/ducks/auth'
 
 export const routes = {
     HOME: '/',
@@ -29,26 +29,26 @@ export const getRouteTitle = (route) =>
         : DEFAULT_TITLE
 
 export const TitledRoute = ({
-    component,
+    component: Component,
     path,
     requiredRoles,
     publicOnly,
     ...routeProps
 }) => {
-    const isLoggedIn = useSelector(isLoggedInSelector)
-    const role = useSelector(roleSelector)
-    if (
-        requiredRoles.length &&
-        (!isLoggedIn || !requiredRoles.includes(role))
-    ) {
+    const { data: { signedIn, hasRequiredClaims } = {} } = useSigninCheck({
+        validateCustomClaims: (claims) => ({
+            hasRequiredClaims: requiredRoles.includes(claims.role),
+        }),
+    })
+
+    if (requiredRoles.length && (!signedIn || !hasRequiredClaims)) {
         return <Redirect to={routes.LOGIN} />
     }
 
-    if (publicOnly && isLoggedIn) {
+    if (publicOnly && signedIn) {
         return <Redirect to={routes.HOME} />
     }
 
-    const Component = component
     return (
         <Route
             path={path}

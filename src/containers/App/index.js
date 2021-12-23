@@ -36,7 +36,7 @@ export const UnwrappedApp = ({
     const linkParams = useLinkParams()
     return (
         <>
-            <Navbar title="FE Template" />
+            <Navbar />
             <AppContainer>
                 <div>Congrats, you started up the FE template.</div>
                 <ExampleAction

@@ -28,3 +28,7 @@ export const AvatarImg = styled.img`
     border-radius: 100px;
     border: 0px solid ${Colours.White};
 `
+
+export const Name = styled.span`
+    color: ${Colours.White};
+`

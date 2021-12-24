@@ -1,7 +1,6 @@
 # FE App Template
 
 ![Build Status](https://github.com/jackcohen5/fe-template/actions/workflows/build.yml/badge.svg?branch=master)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=jackcohen5/fe-template)](https://dependabot.com)
 
 ## Features
 

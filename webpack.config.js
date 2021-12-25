@@ -3,7 +3,8 @@ const { resolve } = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     webpack = require('webpack'),
     ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin'),
-    Dotenv = require('dotenv-webpack')
+    Dotenv = require('dotenv-webpack'),
+    CopyPlugin = require('copy-webpack-plugin')
 
 const BUILD_DIR = resolve(__dirname, '.dist')
 
@@ -53,6 +54,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: resolve(__dirname, 'src', 'index.html'),
         }),
+        isDevelopment
+            ? null
+            : new CopyPlugin({ patterns: [resolve(__dirname, 'public')] }),
         isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
         isDevelopment
             ? new ReactRefreshWebpackPlugin({ overlay: false })

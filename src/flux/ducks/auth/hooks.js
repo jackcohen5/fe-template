@@ -1,9 +1,8 @@
-import { useCallback } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import { useHistory } from 'react-router-dom'
-import { useFirebaseApp } from 'reactfire'
+import { useAuth } from 'reactfire'
 import {
-    getAuth,
     signInWithEmailAndPassword,
     signInWithCustomToken,
 } from 'firebase/auth'
@@ -13,9 +12,33 @@ import { getErrorMessage, Roles } from 'flux/ducks/auth'
 import { useFetch } from 'services/Fetch'
 import routes from 'routes'
 
+export const useUserRole = () => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [role, setRole] = useState(undefined)
+    const Auth = useAuth()
+
+    useEffect(
+        () =>
+            Auth.onAuthStateChanged((user) => {
+                if (user) {
+                    setIsLoading(true)
+                    user.getIdTokenResult().then((r) => {
+                        setRole(r.claims.role)
+                        setIsLoading(false)
+                    })
+                } else {
+                    setRole(undefined)
+                    setIsLoading(false)
+                }
+            }),
+        [Auth],
+    )
+
+    return { role, isLoading }
+}
+
 const useLoginSuccess = () => {
     const history = useHistory()
-
     return useCallback(
         ({ user: { email } }) => {
             history.push(routes.HOME)
@@ -27,7 +50,7 @@ const useLoginSuccess = () => {
 
 export const useLogin = () => {
     const onLoginSuccess = useLoginSuccess()
-    const Auth = getAuth(useFirebaseApp())
+    const Auth = useAuth()
     return ({ email, password }) =>
         signInWithEmailAndPassword(Auth, email, password)
             .then(onLoginSuccess)
@@ -36,7 +59,7 @@ export const useLogin = () => {
 
 export const useLogout = () => {
     const history = useHistory()
-    const Auth = getAuth(useFirebaseApp())
+    const Auth = useAuth()
     return () =>
         Auth.signOut().then(() => {
             history.push(routes.LOGIN)
@@ -47,7 +70,7 @@ export const useLogout = () => {
 export const useSignUp = (role = Roles.ROLE_1) => {
     const onLoginSuccess = useLoginSuccess()
     const Fetch = useFetch()
-    const Auth = getAuth(useFirebaseApp())
+    const Auth = useAuth()
 
     return (signUpProps) => {
         signUpProps.role = role

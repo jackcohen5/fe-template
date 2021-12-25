@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 import { Helmet } from 'react-helmet'
-import { Route, Redirect } from 'react-router-dom'
 import { useSigninCheck } from 'reactfire'
 
-import { Roles } from 'flux/ducks/auth'
+import { Redirect, Route } from 'react-router-dom'
+
+import { Roles, useUserRole } from 'flux/ducks/auth'
+import Loader from 'components/Loader'
 
 export const routes = {
     HOME: '/',
@@ -23,7 +25,7 @@ const routeTitles = {
     [routes.ROLE_2_ROUTE]: 'Private Role 2 Route',
 }
 
-export const getRouteTitle = (route) =>
+const getRouteTitle = (route) =>
     routeTitles[route]
         ? `${DEFAULT_TITLE} - ${routeTitles[route]}`
         : DEFAULT_TITLE
@@ -35,13 +37,14 @@ export const TitledRoute = ({
     publicOnly,
     ...routeProps
 }) => {
-    const { data: { signedIn, hasRequiredClaims } = {} } = useSigninCheck({
-        validateCustomClaims: (claims) => ({
-            hasRequiredClaims: requiredRoles.includes(claims.role),
-        }),
-    })
+    const { status, data: { signedIn } = {} } = useSigninCheck()
+    const { role, isLoading } = useUserRole()
 
-    if (requiredRoles.length && (!signedIn || !hasRequiredClaims)) {
+    if (isLoading || status === 'loading') {
+        return <Loader isStretchy={true} />
+    }
+
+    if (requiredRoles.length && (!signedIn || !requiredRoles.includes(role))) {
         return <Redirect to={routes.LOGIN} />
     }
 

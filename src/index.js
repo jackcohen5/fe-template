@@ -7,13 +7,12 @@ import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import LogRocket from 'logrocket'
 
 import ErrorBoundary from 'components/ErrorBoundary'
+import GlobalProviders from 'components/GlobalProviders'
 import Loader from 'components/Loader'
 import TitledRoute from 'components/TitledRoute'
 import { FontFamily } from 'constants/Typography'
 import { Roles } from 'flux/ducks/auth'
 import routes from 'routes'
-
-import GlobalProviders from './GlobalProviders'
 
 if (process.env.NODE_ENV !== 'development') {
     LogRocket.init(process.env.LOGROCKET_CLIENT_KEY)

@@ -1,57 +1,66 @@
-import { useSelector } from 'react-redux'
+import PropTypes from 'prop-types'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
+import { useSigninCheck, useFirestoreDocData, useFirestore } from 'reactfire'
+import { doc } from 'firebase/firestore'
 
 import routes from 'routes'
 import Button from 'components/Button'
 import Link from 'components/Link'
-import {
-    isAuthLoadedSelector,
-    isLoggedInSelector,
-    useLogout,
-} from 'flux/ducks/auth'
-import { fullNameSelector } from 'flux/ducks/profile/selectors'
+import { useLogout, USER_COLLECTION } from 'flux/ducks/auth'
 
-import { ButtonWrapper, Container, AvatarImg } from './Navbar.styles'
+import { ButtonWrapper, Container, AvatarImg, Name } from './Navbar.styles'
 
-const useNavbarAuth = () => {
-    const isLoggedIn = useSelector(isLoggedInSelector)
-    const fullName = useSelector(fullNameSelector)
+const LoggedInNavbarAction = ({ userId }) => {
     const logout = useLogout()
+    const { status, data: { firstName = null, lastName = null } = {} } =
+        useFirestoreDocData(doc(useFirestore(), USER_COLLECTION, userId))
 
-    return { isLoggedIn, fullName, logout }
+    return (
+        <>
+            <AvatarImg src="/default-avatar.png" alt="Avatar" />
+            {status === 'success' ? (
+                <Name>
+                    {firstName} {lastName}
+                </Name>
+            ) : null}
+            <Button onClick={logout} ariaLabel="Logout">
+                Logout
+            </Button>
+        </>
+    )
 }
 
-const useNavActions = () => {
-    const { isLoggedIn, fullName, logout } = useNavbarAuth()
+LoggedInNavbarAction.propTypes = {
+    userId: PropTypes.string.isRequired,
+}
+
+const useNavActions = ({ signedIn, user }) => {
     const { path } = useRouteMatch()
 
-    if (isLoggedIn) {
-        return fullName ? (
-            <>
-                <AvatarImg src="/default-avatar.png" alt="Avatar" />
-                <Button onClick={logout} ariaLabel="Login">
-                    Logout
-                </Button>
-            </>
-        ) : null
+    if (signedIn && user) {
+        return <LoggedInNavbarAction userId={user.uid} />
     } else {
         return path === routes.LOGIN ? null : (
-            <>
-                <RouterLink to={routes.LOGIN}>
-                    <Button ariaLabel="Login">Login</Button>
-                </RouterLink>
-            </>
+            <RouterLink to={routes.LOGIN}>
+                <Button ariaLabel="Login">Login</Button>
+            </RouterLink>
         )
     }
 }
 
-export const Navbar = () => {
-    const isAuthLoaded = useSelector(isAuthLoadedSelector)
-    const navActions = useNavActions()
+const Navbar = () => {
+    const { status, data: { signedIn = false, user = null } = {} } =
+        useSigninCheck()
+    const navActions = useNavActions({ signedIn, user })
+
     return (
         <Container>
             <Link to={routes.HOME} label="FE Template" />
-            {isAuthLoaded ? <ButtonWrapper>{navActions}</ButtonWrapper> : null}
+            {status === 'loading' ? null : (
+                <ButtonWrapper data-testid="nav-actions-wrapper">
+                    {navActions}
+                </ButtonWrapper>
+            )}
         </Container>
     )
 }

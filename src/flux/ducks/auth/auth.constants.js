@@ -17,3 +17,5 @@ const ErrorMessages = {
 export const getErrorMessage = (code) =>
     ErrorMessages[code] ??
     'An error occurred. Please try again in a few minutes.'
+
+export const USER_COLLECTION = 'users'

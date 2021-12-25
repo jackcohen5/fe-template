@@ -33,11 +33,11 @@ export const StretchContainer = styled.div`
 export const Loader = ({ className, isStretchy }) => {
     return isStretchy ? (
         <StretchContainer className={className}>
-            <Spinner />
+            <Spinner aria-label="loader" />
         </StretchContainer>
     ) : (
         <div className={className}>
-            <Spinner />
+            <Spinner aria-label="loader" />
         </div>
     )
 }

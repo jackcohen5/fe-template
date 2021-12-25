@@ -1,32 +1,77 @@
+import { useCallback, useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import { useFirebase } from 'react-redux-firebase'
 import { useHistory } from 'react-router-dom'
+import { useAuth } from 'reactfire'
+import {
+    signInWithEmailAndPassword,
+    signInWithCustomToken,
+} from 'firebase/auth'
+import LogRocket from 'logrocket'
 
 import { getErrorMessage, Roles } from 'flux/ducks/auth'
 import { useFetch } from 'services/Fetch'
 import routes from 'routes'
 
-export const useLogin = () => {
-    const history = useHistory()
-    const firebase = useFirebase()
+export const useUserRole = () => {
+    const [isLoading, setIsLoading] = useState(true)
+    const [role, setRole] = useState(undefined)
+    const Auth = useAuth()
 
+    useEffect(
+        () =>
+            Auth.onAuthStateChanged((user) => {
+                if (user) {
+                    setIsLoading(true)
+                    user.getIdTokenResult().then((r) => {
+                        setRole(r.claims.role)
+                        setIsLoading(false)
+                    })
+                } else {
+                    setRole(undefined)
+                    setIsLoading(false)
+                }
+            }),
+        [Auth],
+    )
+
+    return { role, isLoading }
+}
+
+const useLoginSuccess = () => {
+    const history = useHistory()
+    return useCallback(
+        ({ user: { email } }) => {
+            LogRocket.identify(email, { email })
+            history.push(routes.HOME)
+        },
+        [history],
+    )
+}
+
+export const useLogin = () => {
+    const onLoginSuccess = useLoginSuccess()
+    const Auth = useAuth()
     return ({ email, password }) =>
-        firebase
-            .login({ email, password })
-            .then(() => history.push(routes.HOME))
+        signInWithEmailAndPassword(Auth, email, password)
+            .then(onLoginSuccess)
             .catch((e) => toast.error(getErrorMessage(e.code)))
 }
 
 export const useLogout = () => {
     const history = useHistory()
-    const firebase = useFirebase()
-    return () => firebase.logout().then(() => history.push(routes.LOGIN))
+    const Auth = useAuth()
+    return () =>
+        Auth.signOut().then(() => {
+            LogRocket.startNewSession()
+            history.push(routes.LOGIN)
+            window.location.reload()
+        })
 }
 
 export const useSignUp = (role = Roles.ROLE_1) => {
+    const onLoginSuccess = useLoginSuccess()
     const Fetch = useFetch()
-    const history = useHistory()
-    const firebase = useFirebase()
+    const Auth = useAuth()
 
     return (signUpProps) => {
         signUpProps.role = role
@@ -36,13 +81,8 @@ export const useSignUp = (role = Roles.ROLE_1) => {
             method: 'POST',
             path: '/signUp',
         })
-            .then(({ token }) => firebase.login({ token }))
-            .then(() => {
-                delete signUpProps.password
-                delete signUpProps.confirmPassword
-                return firebase.updateProfile(signUpProps)
-            })
-            .then(() => history.push(routes.HOME))
+            .then(({ token }) => signInWithCustomToken(Auth, token))
+            .then(onLoginSuccess)
             .catch((e) => toast.error(getErrorMessage(e.body?.errorCode)))
     }
 }

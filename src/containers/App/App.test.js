@@ -12,6 +12,14 @@ jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
     useLocation: jest.fn(),
 }))
+jest.mock('components/Navbar', () => {
+    return {
+        __esModule: true,
+        default: () => {
+            return <nav>Navbar</nav>
+        },
+    }
+})
 
 const defaultProps = {
     apiExampleAction: () => {},

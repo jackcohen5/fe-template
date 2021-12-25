@@ -41,8 +41,8 @@ const useLoginSuccess = () => {
     const history = useHistory()
     return useCallback(
         ({ user: { email } }) => {
-            history.push(routes.HOME)
             LogRocket.identify(email, { email })
+            history.push(routes.HOME)
         },
         [history],
     )
@@ -62,6 +62,7 @@ export const useLogout = () => {
     const Auth = useAuth()
     return () =>
         Auth.signOut().then(() => {
+            LogRocket.startNewSession()
             history.push(routes.LOGIN)
             window.location.reload()
         })

@@ -1,12 +1,13 @@
 import { render, screen } from '@testing-library/react'
 import UserEvent from '@testing-library/user-event'
-import { useFirebase } from 'react-redux-firebase'
+import { useUser } from 'reactfire'
 
-import { BrowserRouter as Router } from 'react-router-dom'
+import { useLogout } from 'flux/ducks/auth'
 
-import { UnwrappedProtectedApp as ProtectedApp } from '.'
+import ProtectedApp from '.'
 
-jest.mock('react-redux-firebase')
+jest.mock('reactfire')
+jest.mock('flux/ducks/auth')
 jest.mock('containers/App', () => {
     return {
         __esModule: true,
@@ -16,40 +17,51 @@ jest.mock('containers/App', () => {
     }
 })
 
-const defaultProps = {
-    isEmailVerified: true,
-}
-
-const renderComponent = (props = {}) =>
-    render(
-        <Router>
-            <ProtectedApp {...defaultProps} {...props} />
-        </Router>,
-    )
+const renderComponent = (props = {}) => render(<ProtectedApp {...props} />)
 
 describe('ProtectedApp', () => {
-    let mockLogout
     beforeEach(() => {
         jest.resetAllMocks()
-        mockLogout = jest.fn()
-        useFirebase.mockReturnValue({
-            logout: mockLogout,
+
+        useUser.mockReturnValue({
+            status: 'success',
+            data: { emailVerified: true },
         })
     })
 
     it('Renders app container if verified', () => {
-        renderComponent({ isEmailVerified: true })
+        useUser.mockReturnValue({
+            status: 'success',
+            data: { emailVerified: true },
+        })
+
+        renderComponent()
         expect(screen.getByText('App Container')).toBeDefined()
     })
 
+    it('Renders loader if user is loading', () => {
+        useUser.mockReturnValue({ status: 'loading', data: null })
+
+        renderComponent()
+        expect(screen.findByLabelText('loader')).toBeDefined()
+    })
+
     it('Renders verification prompt if unverified', () => {
-        renderComponent({ isEmailVerified: false })
+        useUser.mockReturnValue({
+            status: 'success',
+            data: { emailVerified: false },
+        })
+
+        renderComponent()
         expect(
             screen.getByText('Check your inbox for your verification email.'),
         ).toBeDefined()
     })
 
     it('Triggers logout on button click', () => {
+        const mockLogout = jest.fn()
+        useLogout.mockImplementation(mockLogout)
+
         renderComponent()
         UserEvent.click(screen.getByRole('button', { name: 'Logout' }))
         expect(mockLogout).toHaveBeenCalled()

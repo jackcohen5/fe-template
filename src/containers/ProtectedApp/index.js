@@ -7,7 +7,7 @@ import { useLogout } from 'flux/ducks/auth'
 
 import { AppContainer } from './ProtectedApp.styles'
 
-export const ProtectedApp = () => {
+const ProtectedApp = () => {
     const logout = useLogout()
     const { status, data: user } = useUser()
 

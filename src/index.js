@@ -6,11 +6,12 @@ import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import LogRocket from 'logrocket'
 
-import { FontFamily } from 'constants/Typography'
 import ErrorBoundary from 'components/ErrorBoundary'
 import Loader from 'components/Loader'
-import routes, { TitledRoute } from 'routes'
+import TitledRoute from 'components/TitledRoute'
+import { FontFamily } from 'constants/Typography'
 import { Roles } from 'flux/ducks/auth'
+import routes from 'routes'
 
 import GlobalProviders from './GlobalProviders'
 

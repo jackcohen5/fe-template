@@ -37,7 +37,7 @@ export const Loader = ({ className, isStretchy }) => {
         </StretchContainer>
     ) : (
         <div className={className}>
-            <Spinner />
+            <Spinner aria-label="loader" />
         </div>
     )
 }

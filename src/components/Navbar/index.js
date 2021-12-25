@@ -23,7 +23,7 @@ const LoggedInNavbarAction = ({ userId }) => {
                     {firstName} {lastName}
                 </Name>
             ) : null}
-            <Button onClick={logout} ariaLabel="Login">
+            <Button onClick={logout} ariaLabel="Logout">
                 Logout
             </Button>
         </>
@@ -48,15 +48,18 @@ const useNavActions = ({ signedIn, user }) => {
     }
 }
 
-export const Navbar = () => {
+const Navbar = () => {
     const { status, data: { signedIn = false, user = null } = {} } =
         useSigninCheck()
     const navActions = useNavActions({ signedIn, user })
+
     return (
         <Container>
             <Link to={routes.HOME} label="FE Template" />
             {status === 'loading' ? null : (
-                <ButtonWrapper>{navActions}</ButtonWrapper>
+                <ButtonWrapper data-testid="nav-actions-wrapper">
+                    {navActions}
+                </ButtonWrapper>
             )}
         </Container>
     )

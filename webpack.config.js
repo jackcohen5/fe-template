@@ -62,6 +62,11 @@ module.exports = {
             ? new ReactRefreshWebpackPlugin({ overlay: false })
             : null,
     ].filter(Boolean),
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     watchOptions: {
         ignored: /node_modules/,
     },

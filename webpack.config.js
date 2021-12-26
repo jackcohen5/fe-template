@@ -64,7 +64,19 @@ module.exports = {
     ].filter(Boolean),
     optimization: {
         splitChunks: {
+            name: false,
             chunks: 'all',
+            maxSize: 10000000,
+            minSize: 20000,
+            maxInitialRequests: 30,
+            maxAsyncRequests: 30,
+            cacheGroups: {
+                defaultVendors: {
+                    priority: 0,
+                    name: 'vendors',
+                    test: /[\\/]node_modules[\\/]/i,
+                },
+            },
         },
     },
     watchOptions: {

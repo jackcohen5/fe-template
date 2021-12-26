@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import PropTypes from 'prop-types'
 import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
 import { useSigninCheck, useFirestoreDocData, useFirestore } from 'reactfire'
@@ -66,4 +67,4 @@ const Navbar = () => {
 }
 
 export { NavbarHeight } from './Navbar.constants'
-export default Navbar
+export default memo(Navbar)

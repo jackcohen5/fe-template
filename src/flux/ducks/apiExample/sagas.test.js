@@ -37,7 +37,7 @@ describe('Example duck sagas', () => {
 
     it('Dispatches success action on fetch success', async () => {
         const result = { some: 'result' }
-        Fetch.mockResolvedValue({ data: result })
+        Fetch.mockResolvedValue(result)
 
         await expectSaga(apiExampleWatcherSaga)
             .dispatch(apiExampleAction())

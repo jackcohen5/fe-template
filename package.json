@@ -9,7 +9,7 @@
     "flint": "eslint --ext .js src/ --fix",
     "lint": "eslint --ext .js src",
     "test": "jest --config ./jest.config.json",
-    "test-watch": "yarn test --watch"
+    "test:watch": "yarn test --watch"
   },
   "keywords": [],
   "author": "jackcohen5",

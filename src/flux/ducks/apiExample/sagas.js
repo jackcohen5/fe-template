@@ -11,8 +11,8 @@ import {
 export function* triggerExampleApiSaga() {
     try {
         yield delay(1000)
-        const { data } = yield Fetch({ method: 'GET', path: '/example' })
-        yield put(apiExampleActionSuccess(data))
+        const exampleResult = yield Fetch({ method: 'GET', path: '/example' })
+        yield put(apiExampleActionSuccess(exampleResult))
     } catch (e) {
         yield put(apiExampleActionFailure({ message: e.message }))
     }

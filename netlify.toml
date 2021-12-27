@@ -17,14 +17,6 @@
 [build.processing.images]
   compress = true
 
-# Production
-[context.production.environment]
-  API_LOCATION = "https://path.to.production.api.com/production/api/:splat"
-
-# Staging
-[context.staging.environment]
-  API_LOCATION = "https://path.to.staging.api.com/staging/api/:splat"
-
 # API
 [[redirects]]
   from    = "/api/*"

@@ -6,6 +6,8 @@ In order to use this template, you will first need to follow the following steps
 
 1. Create a new site in Netlify from the cloned template. 
 
+2. Add an API_LOCATION environment variable to your Netlify site with the URL of your API. 
+
 **Note:** You must connect Netlify to your Github account/organization for this step.
 
 ## Setup Firebase

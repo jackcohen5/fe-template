@@ -4,9 +4,11 @@ In order to use this template, you will first need to follow the following steps
 
 ## Setup Netlify
 
-1. Create a new site in Netlify from the cloned template. 
+1. Create a new site in Netlify from the cloned template. Ensure [builds are stopped](https://docs.netlify.com/configure-builds/stop-or-activate-builds/). /shrug
 
-2. Add an API_LOCATION environment variable to your Netlify site with the URL of your API. 
+2. Add an API_LOCATION environment variable to your Netlify site with the URL of your API.
+
+3. Create a [Netlify access token](https://docs.netlify.com/cli/get-started/#obtain-a-token-in-the-netlify-ui) and add the `NETLIFY_AUTH_TOKEN` environment variable to your Github Actions configuration.
 
 **Note:** You must connect Netlify to your Github account/organization for this step.
 

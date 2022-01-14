@@ -1,0 +1,38 @@
+name: FE Template CD
+on:
+  workflow_run:
+    workflows: ["FE Template CI"]
+    branches: [master]
+    types: [completed]
+
+jobs:
+  deploy_staging:
+    name: Deploy application to the Netlify preview environment
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.18.1'
+        cache: 'yarn'
+    - run: yarn install
+    - name: Deploy
+      run: yarn netlify deploy
+  deploy_production:
+    name: Deploy application to the Netlify production environment
+    runs-on: ubuntu-latest
+    needs: deploy_staging
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Setup NodeJS
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.18.1'
+        cache: 'yarn'
+    - run: yarn install
+    - name: Deploy
+      run: yarn netlify deploy --prod

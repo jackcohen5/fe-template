@@ -9,8 +9,6 @@ import routes from 'routes'
 
 import Navbar from '.'
 
-jest.mock('firebase/firestore')
-jest.mock('reactfire')
 jest.mock('react-router', () => ({
     ...jest.requireActual('react-router'),
     useRouteMatch: jest.fn(),

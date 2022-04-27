@@ -6,7 +6,6 @@ import { useLogout } from 'flux/ducks/auth'
 
 import ProtectedApp from '.'
 
-jest.mock('reactfire')
 jest.mock('flux/ducks/auth')
 jest.mock('containers/App', () => {
     return {

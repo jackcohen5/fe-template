@@ -20,7 +20,7 @@ describe('Loader', () => {
               >
                 <div
                   aria-label="loader"
-                  class="sc-bdvvtL hglvFB"
+                  class="sc-bczRLJ ePeLTm"
                 />
               </div>
             </div>
@@ -32,11 +32,11 @@ describe('Loader', () => {
         expect(container).toMatchInlineSnapshot(`
             <div>
               <div
-                class="sc-gsDKAQ jeVTdU"
+                class="sc-gsnTZi jwavKk"
               >
                 <div
                   aria-label="loader"
-                  class="sc-bdvvtL hglvFB"
+                  class="sc-bczRLJ ePeLTm"
                 />
               </div>
             </div>

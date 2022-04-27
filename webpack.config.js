@@ -57,7 +57,6 @@ module.exports = {
         isDevelopment
             ? null
             : new CopyPlugin({ patterns: [resolve(__dirname, 'public')] }),
-        isDevelopment ? new webpack.HotModuleReplacementPlugin() : null,
         isDevelopment
             ? new ReactRefreshWebpackPlugin({ overlay: false })
             : null,

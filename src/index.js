@@ -2,7 +2,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import { lazy, Suspense } from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
 import LogRocket from 'logrocket'
 
@@ -23,7 +23,7 @@ const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
 const Login = lazy(() => import('containers/Login'))
 const SignUp = lazy(() => import('containers/SignUp'))
 
-ReactDOM.render(
+createRoot(document.getElementById('root')).render(
     <div id="app" style={{ fontFamily: FontFamily }}>
         <ErrorBoundary tag="root">
             <GlobalProviders>
@@ -66,5 +66,4 @@ ReactDOM.render(
             </GlobalProviders>
         </ErrorBoundary>
     </div>,
-    document.getElementById('root'),
 )

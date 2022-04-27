@@ -57,12 +57,12 @@ describe('ProtectedApp', () => {
         ).toBeDefined()
     })
 
-    it('Triggers logout on button click', () => {
+    it('Triggers logout on button click', async () => {
         const mockLogout = jest.fn()
         useLogout.mockImplementation(mockLogout)
 
         renderComponent()
-        UserEvent.click(screen.getByRole('button', { name: 'Logout' }))
+        await UserEvent.click(screen.getByRole('button', { name: 'Logout' }))
         expect(mockLogout).toHaveBeenCalled()
     })
 })

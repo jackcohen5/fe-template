@@ -49,7 +49,7 @@ describe('Navbar', () => {
         expect(screen.queryByTestId('nav-actions-wrapper')).toBeNull()
     })
 
-    it('Renders avatar, name and logout button if signed in', () => {
+    it('Renders avatar, name and logout button if signed in', async () => {
         const mockLogout = jest.fn()
         useLogout.mockReturnValue(mockLogout)
 
@@ -58,7 +58,7 @@ describe('Navbar', () => {
         expect(screen.queryByAltText('Avatar')).not.toBeNull()
         expect(screen.queryByLabelText('Logout')).not.toBeNull()
         expect(screen.queryByText('Obi Wan Kenobi')).not.toBeNull()
-        UserEvent.click(screen.getByRole('button', { name: 'Logout' }))
+        await UserEvent.click(screen.getByRole('button', { name: 'Logout' }))
         expect(mockLogout).toHaveBeenCalled()
     })
 

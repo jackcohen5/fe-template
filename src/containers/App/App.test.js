@@ -68,10 +68,10 @@ describe('App', () => {
             ).toBeDefined()
         })
 
-        it('Calls exampleAction on button click', () => {
+        it('Calls exampleAction on button click', async () => {
             const exampleActionSpy = jest.fn()
             renderComponent({ exampleAction: exampleActionSpy })
-            UserEvent.click(
+            await UserEvent.click(
                 screen.getByRole('button', { name: 'Trigger Example Action' }),
             )
             expect(exampleActionSpy).toHaveBeenCalled()
@@ -105,10 +105,10 @@ describe('App', () => {
             expect(screen.getByText('Calling in 1 second...')).toBeDefined()
         })
 
-        it('Calls apiExampleAction on button click', () => {
+        it('Calls apiExampleAction on button click', async () => {
             const apiExampleActionSpy = jest.fn()
             renderComponent({ apiExampleAction: apiExampleActionSpy })
-            UserEvent.click(
+            await UserEvent.click(
                 screen.getByRole('button', { name: 'Trigger API Call' }),
             )
             expect(apiExampleActionSpy).toHaveBeenCalled()

@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { Helmet } from "react-helmet"
 import { useSigninCheck } from "reactfire"
 
-import { Redirect, Route } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 import { Roles, useUserRole } from "flux/ducks/auth"
 import { routes, routeTitles } from "routes"
@@ -20,7 +20,6 @@ const TitledRoute = ({
     path,
     requiredRoles,
     publicOnly,
-    ...routeProps
 }) => {
     const { status, data: { signedIn } = {} } = useSigninCheck()
     const { role, isLoading } = useUserRole()
@@ -30,26 +29,20 @@ const TitledRoute = ({
     }
 
     if (requiredRoles.length && (!signedIn || !requiredRoles.includes(role))) {
-        return <Redirect to={routes.LOGIN} />
+        return <Navigate to={routes.LOGIN} />
     }
 
     if (publicOnly && signedIn) {
-        return <Redirect to={routes.HOME} />
+        return <Navigate to={routes.HOME} />
     }
 
     return (
-        <Route
-            path={path}
-            {...routeProps}
-            render={() => (
-                <>
-                    <Component />
-                    <Helmet>
-                        <title>{getRouteTitle(path)}</title>
-                    </Helmet>
-                </>
-            )}
-        />
+        <>
+            <Component />
+            <Helmet>
+                <title>{getRouteTitle(path)}</title>
+            </Helmet>
+        </>
     )
 }
 

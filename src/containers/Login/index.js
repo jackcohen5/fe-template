@@ -1,4 +1,4 @@
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
 import Navbar from "components/Navbar"
@@ -26,7 +26,7 @@ export const Login = () => {
         formState: { errors },
         handleSubmit,
     } = useForm()
-    const history = useHistory()
+    const navigate = useNavigate()
     const login = useLogin()
 
     return (
@@ -72,9 +72,7 @@ export const Login = () => {
                         <ButtonSeparator></ButtonSeparator>
                     </ButtonSeparatorContainer>
                     <LoginInputContainer>
-                        <LoginAction
-                            onClick={() => history.push(routes.SIGN_UP)}
-                        >
+                        <LoginAction onClick={() => navigate(routes.SIGN_UP)}>
                             Sign up
                         </LoginAction>
                     </LoginInputContainer>

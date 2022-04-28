@@ -1,6 +1,6 @@
 import { memo } from "react"
 import PropTypes from "prop-types"
-import { Link as RouterLink, useRouteMatch } from "react-router-dom"
+import { Link as RouterLink, useLocation } from "react-router-dom"
 import { useSigninCheck, useFirestoreDocData, useFirestore } from "reactfire"
 import { doc } from "firebase/firestore"
 
@@ -36,12 +36,12 @@ LoggedInNavbarAction.propTypes = {
 }
 
 const useNavActions = ({ signedIn, user }) => {
-    const { path } = useRouteMatch()
+    const { pathname } = useLocation()
 
     if (signedIn && user) {
         return <LoggedInNavbarAction userId={user.uid} />
     } else {
-        return path === routes.LOGIN ? null : (
+        return pathname === routes.LOGIN ? null : (
             <RouterLink to={routes.LOGIN}>
                 <Button ariaLabel="Login">Login</Button>
             </RouterLink>

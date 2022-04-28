@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import toast from "react-hot-toast"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { useAuth } from "reactfire"
 import {
     signInWithEmailAndPassword,
@@ -38,13 +38,13 @@ export const useUserRole = () => {
 }
 
 const useLoginSuccess = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     return useCallback(
         ({ user: { email } }) => {
             LogRocket.identify(email, { email })
-            history.push(routes.HOME)
+            navigate(routes.HOME)
         },
-        [history]
+        [navigate]
     )
 }
 
@@ -58,12 +58,12 @@ export const useLogin = () => {
 }
 
 export const useLogout = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const Auth = useAuth()
     return () =>
         Auth.signOut().then(() => {
             LogRocket.startNewSession()
-            history.push(routes.LOGIN)
+            navigate(routes.LOGIN)
             window.location.reload()
         })
 }

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import UserEvent from "@testing-library/user-event"
-import { useRouteMatch } from "react-router"
+import { useLocation } from "react-router-dom"
 import { useSigninCheck, useFirestoreDocData, useFirestore } from "reactfire"
 import { BrowserRouter as Router } from "react-router-dom"
 
@@ -9,9 +9,9 @@ import routes from "routes"
 
 import Navbar from "."
 
-jest.mock("react-router", () => ({
-    ...jest.requireActual("react-router"),
-    useRouteMatch: jest.fn(),
+jest.mock("react-router-dom", () => ({
+    ...jest.requireActual("react-router-dom"),
+    useLocation: jest.fn(),
 }))
 jest.mock("flux/ducks/auth")
 
@@ -29,8 +29,8 @@ describe("Navbar", () => {
         jest.resetAllMocks()
 
         useFirestore.mockReturnValue(null)
-        useRouteMatch.mockReturnValue({
-            path: routes.HOME,
+        useLocation.mockReturnValue({
+            pathname: routes.HOME,
         })
         useSigninCheck.mockReturnValue({
             status: "success",
@@ -73,8 +73,8 @@ describe("Navbar", () => {
     })
 
     it("Does not render login button if on login page", () => {
-        useRouteMatch.mockReturnValue({
-            path: routes.LOGIN,
+        useLocation.mockReturnValue({
+            pathname: routes.LOGIN,
         })
         useSigninCheck.mockReturnValue({
             status: "success",

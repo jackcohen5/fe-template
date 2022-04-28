@@ -1,13 +1,13 @@
-import ReactDOM from 'react-dom'
-import PropTypes from 'prop-types'
+import ReactDOM from "react-dom"
+import PropTypes from "prop-types"
 
-import Button from 'components/Button'
+import Button from "components/Button"
 
 import {
     ModalWrapper,
     ModalContentContainer,
     ModalFooter,
-} from './Modal.styles'
+} from "./Modal.styles"
 
 export const Modal = ({ content, onConfirm, onCancel }) => {
     return ReactDOM.createPortal(
@@ -20,7 +20,7 @@ export const Modal = ({ content, onConfirm, onCancel }) => {
                 </ModalFooter>
             ) : null}
         </ModalWrapper>,
-        document.getElementById('app'),
+        document.getElementById("app")
     )
 }
 

@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import Icon from "./Icon"
 
 const LogOut = (props) => (
     <Icon id="i-signout" {...props}>

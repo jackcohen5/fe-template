@@ -1,16 +1,25 @@
 module.exports = {
-    parser: 'babel-eslint',
-    extends: ['@tophat', 'plugin:react-hooks/recommended'],
+    parser: "@babel/eslint-parser",
+    plugins: ["react", "jsx-a11y", "prettier"],
+    extends: [
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended",
+        "prettier",
+    ],
     rules: {
-        'react/react-in-jsx-scope': 'off',
-        'sort-imports': 'off',
+        "prettier/prettier": "error",
     },
     settings: {
-        'import/resolver': {
+        "import/resolver": {
             node: {
-                paths: ['src'],
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                paths: ["src"],
+                extensions: [".js", ".jsx", ".ts", ".tsx"],
             },
+        },
+        react: {
+            version: "detect",
         },
     },
 }

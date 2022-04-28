@@ -1,9 +1,9 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import Button from 'components/Button'
-import { Colours } from 'constants/Branding'
-import InputText from 'components/InputText'
-import Link from 'components/Link'
+import Button from "components/Button"
+import { Colours } from "constants/Branding"
+import InputText from "components/InputText"
+import Link from "components/Link"
 
 export const SignUpContainer = styled.main`
     width: calc(100% - 30px);

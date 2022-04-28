@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import Icon from "./Icon"
 
 const Settings = (props) => (
     <Icon id="i-settings" {...props}>

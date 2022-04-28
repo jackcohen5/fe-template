@@ -1,10 +1,10 @@
-import { useForm } from 'react-hook-form'
+import { useForm } from "react-hook-form"
 
-import Navbar from 'components/Navbar'
-import { Themes } from 'constants/Branding'
-import Toaster from 'components/Toaster'
-import { useSignUp } from 'flux/ducks/auth'
-import routes from 'routes'
+import Navbar from "components/Navbar"
+import { Themes } from "constants/Branding"
+import Toaster from "components/Toaster"
+import { useSignUp } from "flux/ducks/auth"
+import routes from "routes"
 
 import {
     AlreadySignedUpContainer,
@@ -17,7 +17,7 @@ import {
     SignUpInputContainer,
     SignUpInputText,
     SignUpAction,
-} from './SignUp.styles'
+} from "./SignUp.styles"
 
 const SignUp = () => {
     const {
@@ -27,7 +27,7 @@ const SignUp = () => {
         watch,
     } = useForm()
     const signUp = useSignUp()
-    const currentPassword = watch('password', null)
+    const currentPassword = watch("password", null)
     return (
         <>
             <Navbar />
@@ -47,12 +47,12 @@ const SignUp = () => {
                             name="email"
                             type="email"
                             hasError={Boolean(errors.email)}
-                            {...register('email', {
+                            {...register("email", {
                                 required: true,
                                 pattern: {
                                     value: /\S+@\S+\.\S+/,
                                     message:
-                                        'Entered value does not match email format',
+                                        "Entered value does not match email format",
                                 },
                             })}
                         />
@@ -63,7 +63,7 @@ const SignUp = () => {
                             name="firstName"
                             type="firstName"
                             hasError={Boolean(errors.firstName)}
-                            {...register('firstName', {
+                            {...register("firstName", {
                                 required: true,
                             })}
                         />
@@ -72,7 +72,7 @@ const SignUp = () => {
                             name="lastName"
                             type="lastName"
                             hasError={Boolean(errors.lastName)}
-                            {...register('lastName', {
+                            {...register("lastName", {
                                 required: true,
                             })}
                         />
@@ -83,7 +83,7 @@ const SignUp = () => {
                             name="password"
                             type="password"
                             hasError={Boolean(errors.password)}
-                            {...register('password', {
+                            {...register("password", {
                                 required: true,
                                 validate: (value) => value.length >= 6,
                             })}
@@ -95,7 +95,7 @@ const SignUp = () => {
                             name="confirmPassword"
                             type="password"
                             hasError={Boolean(errors.confirmPassword)}
-                            {...register('confirmPassword', {
+                            {...register("confirmPassword", {
                                 required: true,
                                 validate: (value) => value === currentPassword,
                             })}

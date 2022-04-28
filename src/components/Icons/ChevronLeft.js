@@ -1,4 +1,4 @@
-import Icon from './Icon'
+import Icon from "./Icon"
 
 const ChevronLeft = (props) => (
     <Icon id="i-chevron-left" {...props}>

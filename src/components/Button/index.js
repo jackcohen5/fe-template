@@ -1,7 +1,7 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import { Colours, Themes } from 'constants/Branding'
-import { FontSize } from 'constants/Typography'
+import { Colours, Themes } from "constants/Branding"
+import { FontSize } from "constants/Typography"
 
 const getBackgroundColor = ({ theme, disabled = false }) => {
     if (disabled) {
@@ -33,7 +33,7 @@ const getHoverColor = ({ theme }) => {
 }
 
 const StyledButton = styled.button.attrs((props) => ({
-    'aria-label': props.ariaLabel,
+    "aria-label": props.ariaLabel,
 }))`
     padding: 10px 40px;
     font-size: ${getTextSize};
@@ -41,7 +41,7 @@ const StyledButton = styled.button.attrs((props) => ({
     color: ${Colours.White};
     background-color: ${getBackgroundColor};
     transition-duration: 0.3s;
-    cursor: ${(props) => (props.disabled ? 'unset' : 'pointer')};
+    cursor: ${(props) => (props.disabled ? "unset" : "pointer")};
 
     &:hover {
         background-color: ${getHoverColor};

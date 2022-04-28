@@ -1,11 +1,11 @@
-import { useHistory } from 'react-router-dom'
-import { useForm } from 'react-hook-form'
+import { useHistory } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
-import Navbar from 'components/Navbar'
-import Toaster from 'components/Toaster'
-import { Themes } from 'constants/Branding'
-import { useLogin } from 'flux/ducks/auth'
-import routes from 'routes'
+import Navbar from "components/Navbar"
+import Toaster from "components/Toaster"
+import { Themes } from "constants/Branding"
+import { useLogin } from "flux/ducks/auth"
+import routes from "routes"
 
 import {
     ButtonSeparator,
@@ -18,7 +18,7 @@ import {
     LoginInputContainer,
     LoginInputText,
     LoginAction,
-} from './Login.styles'
+} from "./Login.styles"
 
 export const Login = () => {
     const {
@@ -42,12 +42,12 @@ export const Login = () => {
                             name="email"
                             type="email"
                             hasError={Boolean(errors.email)}
-                            {...register('email', {
+                            {...register("email", {
                                 required: true,
                                 pattern: {
                                     value: /\S+@\S+\.\S+/,
                                     message:
-                                        'Entered value does not match email format.',
+                                        "Entered value does not match email format.",
                                 },
                             })}
                         />
@@ -58,7 +58,7 @@ export const Login = () => {
                             name="password"
                             type="password"
                             hasError={Boolean(errors.password)}
-                            {...register('password', { required: true })}
+                            {...register("password", { required: true })}
                         />
                     </LoginInputContainer>
                     <LoginInputContainer>

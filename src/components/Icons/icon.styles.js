@@ -1,10 +1,10 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import { Colours } from 'constants/Branding'
+import { Colours } from "constants/Branding"
 
 const getColor = (color) => {
     switch (color) {
-        case 'danger':
+        case "danger":
             return Colours.Danger
         default:
             return Colours.Black

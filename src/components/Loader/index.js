@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import PropTypes from "prop-types"
+import styled from "styled-components"
 
-import { Colours } from 'constants/Branding'
+import { Colours } from "constants/Branding"
 
 export const Spinner = styled.div`
     border: 10px solid ${Colours.White};
@@ -48,7 +48,7 @@ Loader.propTypes = {
 }
 
 Loader.defaultProps = {
-    className: '',
+    className: "",
     isStretchy: false,
 }
 

@@ -1,15 +1,15 @@
-import { memo } from 'react'
-import PropTypes from 'prop-types'
-import { Link as RouterLink, useRouteMatch } from 'react-router-dom'
-import { useSigninCheck, useFirestoreDocData, useFirestore } from 'reactfire'
-import { doc } from 'firebase/firestore'
+import { memo } from "react"
+import PropTypes from "prop-types"
+import { Link as RouterLink, useRouteMatch } from "react-router-dom"
+import { useSigninCheck, useFirestoreDocData, useFirestore } from "reactfire"
+import { doc } from "firebase/firestore"
 
-import routes from 'routes'
-import Button from 'components/Button'
-import Link from 'components/Link'
-import { useLogout, USER_COLLECTION } from 'flux/ducks/auth'
+import routes from "routes"
+import Button from "components/Button"
+import Link from "components/Link"
+import { useLogout, USER_COLLECTION } from "flux/ducks/auth"
 
-import { ButtonWrapper, Container, AvatarImg, Name } from './Navbar.styles'
+import { ButtonWrapper, Container, AvatarImg, Name } from "./Navbar.styles"
 
 const LoggedInNavbarAction = ({ userId }) => {
     const logout = useLogout()
@@ -19,7 +19,7 @@ const LoggedInNavbarAction = ({ userId }) => {
     return (
         <>
             <AvatarImg src="/default-avatar.png" alt="Avatar" />
-            {status === 'success' ? (
+            {status === "success" ? (
                 <Name>
                     {firstName} {lastName}
                 </Name>
@@ -57,7 +57,7 @@ const Navbar = () => {
     return (
         <Container>
             <Link to={routes.HOME} label="FE Template" />
-            {status === 'loading' ? null : (
+            {status === "loading" ? null : (
                 <ButtonWrapper data-testid="nav-actions-wrapper">
                     {navActions}
                 </ButtonWrapper>
@@ -66,5 +66,5 @@ const Navbar = () => {
     )
 }
 
-export { NavbarHeight } from './Navbar.constants'
+export { NavbarHeight } from "./Navbar.constants"
 export default memo(Navbar)

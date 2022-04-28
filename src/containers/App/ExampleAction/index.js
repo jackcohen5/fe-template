@@ -1,7 +1,7 @@
-import { memo } from 'react'
-import PropTypes from 'prop-types'
+import { memo } from "react"
+import PropTypes from "prop-types"
 
-import { ExampleContainer, MarginedButton } from './ExampleAction.styles'
+import { ExampleContainer, MarginedButton } from "./ExampleAction.styles"
 
 const ExampleAction = ({
     buttonDisabled,

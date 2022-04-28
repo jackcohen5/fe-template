@@ -1,8 +1,8 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import Button from 'components/Button'
-import { Colours } from 'constants/Branding'
-import InputText from 'components/InputText'
+import Button from "components/Button"
+import { Colours } from "constants/Branding"
+import InputText from "components/InputText"
 
 export const LoginContainer = styled.main`
     width: calc(100% - 30px);

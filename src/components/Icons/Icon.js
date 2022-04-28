@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types"
 
-import { IconBtn } from './icon.styles'
+import { IconBtn } from "./icon.styles"
 
 const Icon = (props) => {
     const { children, color, onClick, ...otherProps } = props
@@ -28,16 +28,16 @@ Icon.propTypes = {
 }
 
 Icon.defaultProps = {
-    xmlns: 'http://www.w3.org/2000/svg',
-    color: 'dark',
+    xmlns: "http://www.w3.org/2000/svg",
+    color: "dark",
     height: 32,
     width: 32,
-    fill: 'none',
-    stroke: 'currentcolor',
-    strokeLinecap: 'round',
-    strokeLinejoin: 'round',
+    fill: "none",
+    stroke: "currentcolor",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
     strokeWidth: 2,
-    viewBox: '0 0 32 32',
+    viewBox: "0 0 32 32",
     onClick: () => {},
 }
 

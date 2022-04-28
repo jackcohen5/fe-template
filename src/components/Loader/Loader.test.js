@@ -1,17 +1,17 @@
-import { render } from '@testing-library/react'
+import { render } from "@testing-library/react"
 
-import Loader from '.'
+import Loader from "."
 
 const defaultProps = {
-    className: '',
+    className: "",
     isStretchy: false,
 }
 
 const renderComponent = (props = {}) =>
     render(<Loader {...defaultProps} {...props} />)
 
-describe('Loader', () => {
-    it('Renders without crashing', () => {
+describe("Loader", () => {
+    it("Renders without crashing", () => {
         const { container } = renderComponent()
         expect(container).toMatchInlineSnapshot(`
             <div>
@@ -27,7 +27,7 @@ describe('Loader', () => {
         `)
     })
 
-    it('Renders stretchy container styles when isStretchy true', () => {
+    it("Renders stretchy container styles when isStretchy true", () => {
         const { container } = renderComponent({ isStretchy: true })
         expect(container).toMatchInlineSnapshot(`
             <div>

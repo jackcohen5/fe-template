@@ -1,5 +1,5 @@
-import { useCallback } from 'react'
-import { getAuth } from 'firebase/auth'
+import { useCallback } from "react"
+import { getAuth } from "firebase/auth"
 
 export class APIError extends Error {
     constructor(message, body, status) {
@@ -20,7 +20,7 @@ export const useFetch = () => {
                 query,
                 url,
             }),
-        [],
+        []
     )
 }
 
@@ -30,7 +30,7 @@ const fetchSuccessHandler = (response) => {
             throw new APIError(
                 `Request failed with status ${response.status}`,
                 body,
-                response.status,
+                response.status
             )
         })
     }
@@ -43,7 +43,7 @@ const Fetch = ({ body, method, path, query, url }) => {
     if (query) {
         completeUrl = `${completeUrl}?${Object.keys(query)
             .map((k) => `${k}=${encodeURIComponent(query[k])}`)
-            .join('&')}`
+            .join("&")}`
     }
 
     const fetchProps = { body: JSON.stringify(body), method }
@@ -57,7 +57,7 @@ const Fetch = ({ body, method, path, query, url }) => {
                   fetch(completeUrl, {
                       ...fetchProps,
                       headers: { Authorization: `Bearer ${token}` },
-                  }),
+                  })
               )
               .then(fetchSuccessHandler)
 }

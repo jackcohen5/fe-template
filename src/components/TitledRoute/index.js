@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import { Helmet } from 'react-helmet'
-import { useSigninCheck } from 'reactfire'
+import PropTypes from "prop-types"
+import { Helmet } from "react-helmet"
+import { useSigninCheck } from "reactfire"
 
-import { Redirect, Route } from 'react-router-dom'
+import { Redirect, Route } from "react-router-dom"
 
-import { Roles, useUserRole } from 'flux/ducks/auth'
-import { routes, routeTitles } from 'routes'
-import Loader from 'components/Loader'
+import { Roles, useUserRole } from "flux/ducks/auth"
+import { routes, routeTitles } from "routes"
+import Loader from "components/Loader"
 
-const DEFAULT_TITLE = 'FE Template'
+const DEFAULT_TITLE = "FE Template"
 
 const getRouteTitle = (route) =>
     routeTitles[route]
@@ -25,7 +25,7 @@ const TitledRoute = ({
     const { status, data: { signedIn } = {} } = useSigninCheck()
     const { role, isLoading } = useUserRole()
 
-    if (isLoading || status === 'loading') {
+    if (isLoading || status === "loading") {
         return <Loader isStretchy={true} />
     }
 

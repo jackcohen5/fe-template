@@ -1,10 +1,10 @@
-import { delay, takeEvery } from 'redux-saga/effects'
+import { delay, takeEvery } from "redux-saga/effects"
 
-import { exampleAction } from '.'
+import { exampleAction } from "."
 
 export function* triggerExampleSaga() {
     yield delay(1000)
-    alert('side effect triggered')
+    alert("side effect triggered")
 }
 
 export default function* exampleWatcherSaga() {

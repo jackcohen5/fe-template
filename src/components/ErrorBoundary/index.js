@@ -1,10 +1,10 @@
-import { Component } from 'react'
-import PropTypes from 'prop-types'
-import LogRocket from 'logrocket'
+import { Component } from "react"
+import PropTypes from "prop-types"
+import LogRocket from "logrocket"
 
-import Button from 'components/Button'
+import Button from "components/Button"
 
-import { Container } from './ErrorBoundary.styles'
+import { Container } from "./ErrorBoundary.styles"
 
 class ErrorBoundary extends Component {
     constructor(props) {

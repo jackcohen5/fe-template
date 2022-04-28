@@ -1,4 +1,4 @@
-import { createSelector } from '@reduxjs/toolkit'
+import { createSelector } from "@reduxjs/toolkit"
 
 const exampleStoreSelector = (state) => state.example
 
@@ -13,5 +13,5 @@ export const memoizedSelector = createSelector(
             result += i
         }
         return result
-    },
+    }
 )

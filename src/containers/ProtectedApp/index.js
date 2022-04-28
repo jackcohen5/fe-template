@@ -1,17 +1,17 @@
-import { useUser } from 'reactfire'
+import { useUser } from "reactfire"
 
-import App from 'containers/App'
-import Button from 'components/Button'
-import Loader from 'components/Loader'
-import { useLogout } from 'flux/ducks/auth'
+import App from "containers/App"
+import Button from "components/Button"
+import Loader from "components/Loader"
+import { useLogout } from "flux/ducks/auth"
 
-import { AppContainer } from './ProtectedApp.styles'
+import { AppContainer } from "./ProtectedApp.styles"
 
 const ProtectedApp = () => {
     const logout = useLogout()
     const { status, data: user } = useUser()
 
-    if (status === 'loading') {
+    if (status === "loading") {
         return <Loader isStretchy={true} />
     }
 

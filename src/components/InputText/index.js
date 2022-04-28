@@ -1,11 +1,11 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import { Colours } from 'constants/Branding'
-import { FontSize } from 'constants/Typography'
+import { Colours } from "constants/Branding"
+import { FontSize } from "constants/Typography"
 
 const InputText = styled.input.attrs(({ ariaLabel, type, ...inputProps }) => ({
-    'aria-label': ariaLabel,
-    type: type ?? 'text',
+    "aria-label": ariaLabel,
+    type: type ?? "text",
     ...inputProps,
 }))`
     padding: 20px;

@@ -1,11 +1,11 @@
-import { createReducer } from '@reduxjs/toolkit'
+import { createReducer } from "@reduxjs/toolkit"
 
-import { ApiCallState } from './apiExample.constants'
+import { ApiCallState } from "./apiExample.constants"
 import {
     apiExampleAction,
     apiExampleActionSuccess,
     apiExampleActionFailure,
-} from './actions'
+} from "./actions"
 
 const initialState = {
     apiExampleStatus: null,

@@ -1,9 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
-import createSagaMiddleware from 'redux-saga'
-import LogRocket from 'logrocket'
+import { configureStore } from "@reduxjs/toolkit"
+import createSagaMiddleware from "redux-saga"
+import LogRocket from "logrocket"
 
-import rootReducer from './reducer'
-import rootSaga from './sagas'
+import rootReducer from "./reducer"
+import rootSaga from "./sagas"
 
 export default () => {
     const sagaMiddleware = createSagaMiddleware()

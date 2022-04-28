@@ -1,19 +1,21 @@
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+import react from "react"
+import PropTypes from "prop-types"
+import t from "@reduxjs/toolkit"
+import { connect } from "react-redux"
 
-import Link from 'components/Link'
-import Navbar from 'components/Navbar'
+import Link from "components/Link"
+import Navbar from "components/Navbar"
 import {
     apiExampleAction,
     exampleApiIsLoadingSelector,
     exampleApiResultSelector,
     hasTriggeredExampleApiSelector,
-} from 'flux/ducks/apiExample'
-import { exampleAction, hasTriggeredExampleSelector } from 'flux/ducks/example'
+} from "flux/ducks/apiExample"
+import { exampleAction, hasTriggeredExampleSelector } from "flux/ducks/example"
 
-import { AppContainer } from './App.styles'
-import ExampleAction from './ExampleAction'
-import { useExampleAction, useExampleApiAction, useLinkParams } from './hooks'
+import { AppContainer } from "./App.styles"
+import ExampleAction from "./ExampleAction"
+import { useExampleAction, useExampleApiAction, useLinkParams } from "./hooks"
 
 export const UnwrappedApp = ({
     apiExampleAction,

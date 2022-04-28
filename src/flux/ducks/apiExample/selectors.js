@@ -1,4 +1,4 @@
-import { ApiCallState } from './apiExample.constants'
+import { ApiCallState } from "./apiExample.constants"
 
 const apiExampleStoreSelector = (state) => state.apiExample
 
@@ -19,5 +19,5 @@ export const exampleApiFailedSelector = (state) =>
 
 export const exampleApiResultSelector = (state) => {
     const res = apiExampleStoreSelector(state).apiExampleResult
-    return res ? JSON.stringify(res) : 'Nothing here'
+    return res ? JSON.stringify(res) : "Nothing here"
 }

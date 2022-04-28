@@ -1,29 +1,29 @@
-import 'core-js/stable'
-import 'regenerator-runtime/runtime'
+import "core-js/stable"
+import "regenerator-runtime/runtime"
 
-import { lazy, Suspense } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom'
-import LogRocket from 'logrocket'
+import { lazy, Suspense } from "react"
+import { createRoot } from "react-dom/client"
+import { BrowserRouter as Router, Switch, Redirect } from "react-router-dom"
+import LogRocket from "logrocket"
 
-import ErrorBoundary from 'components/ErrorBoundary'
-import GlobalProviders from 'components/GlobalProviders'
-import Loader from 'components/Loader'
-import TitledRoute from 'components/TitledRoute'
-import { FontFamily } from 'constants/Typography'
-import { Roles } from 'flux/ducks/auth'
-import routes from 'routes'
+import ErrorBoundary from "components/ErrorBoundary"
+import GlobalProviders from "components/GlobalProviders"
+import Loader from "components/Loader"
+import TitledRoute from "components/TitledRoute"
+import { FontFamily } from "constants/Typography"
+import { Roles } from "flux/ducks/auth"
+import routes from "routes"
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV !== "development") {
     LogRocket.init(process.env.LOGROCKET_CLIENT_KEY)
 }
 
-const App = lazy(() => import('containers/App'))
-const ProtectedApp = lazy(() => import('containers/ProtectedApp'))
-const Login = lazy(() => import('containers/Login'))
-const SignUp = lazy(() => import('containers/SignUp'))
+const App = lazy(() => import("containers/App"))
+const ProtectedApp = lazy(() => import("containers/ProtectedApp"))
+const Login = lazy(() => import("containers/Login"))
+const SignUp = lazy(() => import("containers/SignUp"))
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
     <div id="app" style={{ fontFamily: FontFamily }}>
         <ErrorBoundary tag="root">
             <GlobalProviders>
@@ -65,5 +65,5 @@ createRoot(document.getElementById('root')).render(
                 </Router>
             </GlobalProviders>
         </ErrorBoundary>
-    </div>,
+    </div>
 )

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components"
 
-import { NavbarHeight } from 'components/Navbar'
+import { NavbarHeight } from "components/Navbar"
 
 export const AppContainer = styled.main`
     width: 100%;

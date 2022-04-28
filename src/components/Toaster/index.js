@@ -1,6 +1,6 @@
-import { Toaster as HotToaster } from 'react-hot-toast'
+import { Toaster as HotToaster } from "react-hot-toast"
 
-import { Colours } from 'constants/Branding'
+import { Colours } from "constants/Branding"
 
 const Toaster = () => (
     <HotToaster

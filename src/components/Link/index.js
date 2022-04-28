@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import PropTypes from "prop-types"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
 
-import { Colours } from 'constants/Branding'
+import { Colours } from "constants/Branding"
 
 const getTextColor = (theme) => {
     switch (theme) {
@@ -14,7 +14,7 @@ const getTextColor = (theme) => {
 const getTextSize = (theme) => {
     switch (theme) {
         default:
-            return '14px'
+            return "14px"
     }
 }
 

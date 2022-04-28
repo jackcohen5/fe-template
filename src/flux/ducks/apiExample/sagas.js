@@ -1,17 +1,17 @@
-import { delay, put, takeEvery } from 'redux-saga/effects'
+import { delay, put, takeEvery } from "redux-saga/effects"
 
-import Fetch from 'services/Fetch'
+import Fetch from "services/Fetch"
 
 import {
     apiExampleAction,
     apiExampleActionSuccess,
     apiExampleActionFailure,
-} from './actions'
+} from "./actions"
 
 export function* triggerExampleApiSaga() {
     try {
         yield delay(1000)
-        const exampleResult = yield Fetch({ method: 'GET', path: '/example' })
+        const exampleResult = yield Fetch({ method: "GET", path: "/example" })
         yield put(apiExampleActionSuccess(exampleResult))
     } catch (e) {
         yield put(apiExampleActionFailure({ message: e.message }))

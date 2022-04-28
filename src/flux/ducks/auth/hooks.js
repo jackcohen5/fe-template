@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
-import { useHistory } from 'react-router-dom'
-import { useAuth } from 'reactfire'
+import { useCallback, useEffect, useState } from "react"
+import toast from "react-hot-toast"
+import { useHistory } from "react-router-dom"
+import { useAuth } from "reactfire"
 import {
     signInWithEmailAndPassword,
     signInWithCustomToken,
-} from 'firebase/auth'
-import LogRocket from 'logrocket'
+} from "firebase/auth"
+import LogRocket from "logrocket"
 
-import { getErrorMessage, Roles } from 'flux/ducks/auth'
-import { useFetch } from 'services/Fetch'
-import routes from 'routes'
+import { getErrorMessage, Roles } from "flux/ducks/auth"
+import { useFetch } from "services/Fetch"
+import routes from "routes"
 
 export const useUserRole = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -31,7 +31,7 @@ export const useUserRole = () => {
                     setIsLoading(false)
                 }
             }),
-        [Auth],
+        [Auth]
     )
 
     return { role, isLoading }
@@ -44,7 +44,7 @@ const useLoginSuccess = () => {
             LogRocket.identify(email, { email })
             history.push(routes.HOME)
         },
-        [history],
+        [history]
     )
 }
 
@@ -78,8 +78,8 @@ export const useSignUp = (role = Roles.ROLE_1) => {
 
         return Fetch({
             body: signUpProps,
-            method: 'POST',
-            path: '/signUp',
+            method: "POST",
+            path: "/signUp",
         })
             .then(({ token }) => signInWithCustomToken(Auth, token))
             .then(onLoginSuccess)

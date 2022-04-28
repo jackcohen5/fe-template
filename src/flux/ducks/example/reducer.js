@@ -1,6 +1,6 @@
-import { createReducer } from '@reduxjs/toolkit'
+import { createReducer } from "@reduxjs/toolkit"
 
-import { exampleAction } from './actions'
+import { exampleAction } from "./actions"
 
 const initialState = {
     hasTriggeredExample: false,

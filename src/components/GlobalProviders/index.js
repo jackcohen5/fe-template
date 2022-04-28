@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types'
-import { Provider as ReduxProvider } from 'react-redux'
+import PropTypes from "prop-types"
+import { Provider as ReduxProvider } from "react-redux"
 import {
     FirebaseAppProvider,
     AuthProvider,
     useFirebaseApp,
     FirestoreProvider,
-} from 'reactfire'
-import { getAuth } from 'firebase/auth'
-import { getFirestore } from 'firebase/firestore'
+} from "reactfire"
+import { getAuth } from "firebase/auth"
+import { getFirestore } from "firebase/firestore"
 
-import configureStore from 'flux/store'
+import configureStore from "flux/store"
 
 const store = configureStore()
 

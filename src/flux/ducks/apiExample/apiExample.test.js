@@ -1,4 +1,4 @@
-import configureStore from 'flux/store'
+import configureStore from "flux/store"
 
 import {
     apiExampleAction,
@@ -9,24 +9,24 @@ import {
     exampleApiResultSelector,
     exampleApiSucceededSelector,
     hasTriggeredExampleApiSelector,
-} from '.'
+} from "."
 
-describe('API Example duck', () => {
+describe("API Example duck", () => {
     let store
 
     beforeEach(() => {
         store = configureStore()
     })
 
-    describe('API example action', () => {
-        it('Toggles hasTriggeredExample flag', () => {
+    describe("API example action", () => {
+        it("Toggles hasTriggeredExample flag", () => {
             expect(hasTriggeredExampleApiSelector(store.getState())).toBe(false)
 
             store.dispatch(apiExampleAction())
             expect(hasTriggeredExampleApiSelector(store.getState())).toBe(true)
         })
 
-        it('Sets call state to loading', () => {
+        it("Sets call state to loading", () => {
             expect(exampleApiIsLoadingSelector(store.getState())).toBe(false)
 
             store.dispatch(apiExampleAction())
@@ -34,21 +34,21 @@ describe('API Example duck', () => {
         })
     })
 
-    describe('Success action', () => {
-        it('Sets result data', () => {
-            const data = { some: 'data' }
+    describe("Success action", () => {
+        it("Sets result data", () => {
+            const data = { some: "data" }
             const expectedData = JSON.stringify(data)
             expect(exampleApiResultSelector(store.getState())).toBe(
-                'Nothing here',
+                "Nothing here"
             )
 
             store.dispatch(apiExampleActionSuccess(data))
             expect(exampleApiResultSelector(store.getState())).toBe(
-                expectedData,
+                expectedData
             )
         })
 
-        it('Sets call state to succeeded', () => {
+        it("Sets call state to succeeded", () => {
             expect(exampleApiSucceededSelector(store.getState())).toBe(false)
 
             store.dispatch(apiExampleActionSuccess())
@@ -56,21 +56,21 @@ describe('API Example duck', () => {
         })
     })
 
-    describe('Failed action', () => {
-        it('Sets result data', () => {
-            const data = { some: 'failure data' }
+    describe("Failed action", () => {
+        it("Sets result data", () => {
+            const data = { some: "failure data" }
             const expectedData = JSON.stringify(data)
             expect(exampleApiResultSelector(store.getState())).toBe(
-                'Nothing here',
+                "Nothing here"
             )
 
             store.dispatch(apiExampleActionFailure(data))
             expect(exampleApiResultSelector(store.getState())).toBe(
-                expectedData,
+                expectedData
             )
         })
 
-        it('Sets call state to failed', () => {
+        it("Sets call state to failed", () => {
             expect(exampleApiFailedSelector(store.getState())).toBe(false)
 
             store.dispatch(apiExampleActionFailure())

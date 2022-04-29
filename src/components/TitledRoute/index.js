@@ -1,5 +1,5 @@
+import { useEffect } from "react"
 import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
 import { useSigninCheck } from "reactfire"
 
 import { Navigate } from "react-router-dom"
@@ -24,6 +24,10 @@ const TitledRoute = ({
     const { status, data: { signedIn } = {} } = useSigninCheck()
     const { role, isLoading } = useUserRole()
 
+    useEffect(() => {
+        document.title = getRouteTitle(path)
+    }, [path])
+
     if (isLoading || status === "loading") {
         return <Loader isStretchy={true} />
     }
@@ -36,14 +40,7 @@ const TitledRoute = ({
         return <Navigate to={routes.HOME} />
     }
 
-    return (
-        <>
-            <Component />
-            <Helmet>
-                <title>{getRouteTitle(path)}</title>
-            </Helmet>
-        </>
-    )
+    return <Component />
 }
 
 TitledRoute.propTypes = {

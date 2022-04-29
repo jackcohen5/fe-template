@@ -16,11 +16,12 @@ jobs:
     - name: Setup NodeJS
       uses: actions/setup-node@v2
       with:
-        node-version: '14.18.1'
+        node-version: '16.13.1'
         cache: 'yarn'
     - run: yarn install
-    - name: Deploy
-      run: yarn netlify deploy
+    - run: yarn build
+    - name: Deploy Preview
+      run: yarn netlify deploy --message "Preview deploy of ${{ github.ref_name }}@${{ github.sha }} by ${{ github.actor }}" --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --site ${{ secrets.NETLIFY_SITE_ID }}
   deploy_production:
     name: Deploy application to the Netlify production environment
     runs-on: ubuntu-latest
@@ -31,8 +32,9 @@ jobs:
     - name: Setup NodeJS
       uses: actions/setup-node@v2
       with:
-        node-version: '14.18.1'
+        node-version: '16.13.1'
         cache: 'yarn'
     - run: yarn install
-    - name: Deploy
-      run: yarn netlify deploy --prod
+    - run: yarn build
+    - name: Deploy Production
+      run: yarn netlify deploy --prod --message "Production deploy of ${{ github.ref_name }}@${{ github.sha }} by ${{ github.actor }}" --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} --site ${{ secrets.NETLIFY_SITE_ID }}

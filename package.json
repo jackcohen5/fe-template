@@ -57,7 +57,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
     "core-js": "^3.22.4",
-    "firebase": "^9.6.1",
+    "firebase": "^9.8.1",
     "logrocket": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^18.1.0",

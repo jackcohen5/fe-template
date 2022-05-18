@@ -14,15 +14,11 @@ In order to use this template, you will first need to follow the following steps
 
 ## Setup Firebase
 
-1. Create a development project in Firebase and add the project ID and web API key to a .env file in your project's root directory.
+1. Create a development project in Firebase with a web app and add the project ID (`FIREBASE_PROJECT_ID`) and web app API key (`FIREBASE_API_KEY`) to a .env file in your project's root directory.
 
-2. Create production and staging projects in Firebase and add the project ID and API key to your Netlify environment variable config.
+2. Repeat the above, creating production and staging projects in Firebase and add the project IDs and API keys to your Netlify environment variable config.
 
 3. Enable Firebase Authentication and create a Firestore database.
-
-## Setup Firestore
-
-1. Create a Logrocket project and add the client key to your Netlify environment variable config.
 
 ## Setup Logrocket
 

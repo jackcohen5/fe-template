@@ -1,0 +1,30 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint", "react", "jsx-a11y", "prettier"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/eslint-recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:import/typescript",
+      "plugin:react/recommended",
+      "plugin:jsx-a11y/recommended",
+      "plugin:react/jsx-runtime",
+      "plugin:react-hooks/recommended",
+      "prettier"
+    ],
+    "rules": {
+        "prettier/prettier": "error"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "paths": ["src"],
+                "extensions": [".js", ".jsx", ".ts", ".tsx"],
+            },
+        },
+        "react": {
+            "version": "detect"
+        }
+    }
+}

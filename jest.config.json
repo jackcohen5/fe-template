@@ -2,7 +2,7 @@
   "moduleDirectories": ["node_modules", "src"],
   "testRegex": "((\\.|/*.)(test))\\.js?$",
   "transform": {
-    "^.+\\.[t|j]sx?$": "babel-jest"
+    "^.+\\.[t|j]sx?$": "ts-jest"
   },
   "setupFilesAfterEnv": [
     "<rootDir>config/setupTests.js"

@@ -20,19 +20,14 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(js|jsx)$/,
+                test: /\.(ts|tsx)$/,
                 exclude: /node_modules/,
-                use: [
-                    {
-                        loader: "babel-loader",
-                        options: { babelrc: true },
-                    },
-                ],
+                use: ["ts-loader"],
             },
         ],
     },
     resolve: {
-        extensions: ["*", ".js", ".jsx"],
+        extensions: ["*", ".ts", ".tsx", ".js", ".jsx"],
         modules: [resolve(__dirname, "src"), "node_modules"],
     },
     output: {

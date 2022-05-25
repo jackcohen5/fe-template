@@ -55,7 +55,7 @@
     "webpack-dev-server": "^4.3.0"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.5.1",
+    "@reduxjs/toolkit": "^1.8.2",
     "core-js": "^3.22.5",
     "firebase": "^9.6.1",
     "logrocket": "^3.0.0",

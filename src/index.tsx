@@ -9,7 +9,7 @@ import {
     Route as RouterRoute,
     Routes,
 } from "react-router-dom"
-import { init as LogrocketInit } from "logrocket"
+import Logrocket from "logrocket"
 
 import ErrorBoundary from "components/ErrorBoundary"
 import GlobalProviders from "components/GlobalProviders"
@@ -20,7 +20,7 @@ import { Role } from "flux/ducks/auth"
 import Route from "routes"
 
 if (process.env.NODE_ENV !== "development") {
-    LogrocketInit(process.env.LOGROCKET_CLIENT_KEY)
+    Logrocket.init(process.env.LOGROCKET_CLIENT_KEY)
 }
 
 const App = lazy(() => import("containers/App"))

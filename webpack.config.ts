@@ -1,10 +1,10 @@
-const { resolve } = require("path"),
-    { CleanWebpackPlugin } = require("clean-webpack-plugin"),
-    HtmlWebpackPlugin = require("html-webpack-plugin"),
-    webpack = require("webpack"),
-    ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin"),
-    Dotenv = require("dotenv-webpack"),
-    CopyPlugin = require("copy-webpack-plugin")
+import { resolve } from "path"
+import { CleanWebpackPlugin } from "clean-webpack-plugin"
+import HtmlWebpackPlugin from "html-webpack-plugin"
+import webpack from "webpack"
+import ReactRefreshWebpackPlugin from "@pmmmwh/react-refresh-webpack-plugin"
+import Dotenv from "dotenv-webpack"
+import CopyPlugin from "copy-webpack-plugin"
 
 const BUILD_DIR = resolve(__dirname, ".dist")
 

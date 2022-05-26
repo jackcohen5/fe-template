@@ -1,9 +1,5 @@
 {
     "root": true,
-    "env": {
-        "node": true,
-        "browser": true
-    },
     "parser": "@typescript-eslint/parser",
     "plugins": ["@typescript-eslint", "import", "react", "jsx-a11y", "prettier"],
     "extends": [

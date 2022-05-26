@@ -15,7 +15,7 @@ const isDevelopment = env === "development"
 console.log(`FE Template: Building environment ${env}...`)
 
 module.exports = {
-    entry: "./src/index.js",
+    entry: "./src/index.tsx",
     mode: env,
     module: {
         rules: [
@@ -27,7 +27,7 @@ module.exports = {
         ],
     },
     resolve: {
-        extensions: ["*", ".ts", ".tsx", ".js", ".jsx"],
+        extensions: [".js", ".jsx", ".ts", ".tsx"],
         modules: [resolve(__dirname, "src"), "node_modules"],
     },
     output: {

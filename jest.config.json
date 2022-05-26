@@ -1,11 +1,11 @@
 {
   "moduleDirectories": ["node_modules", "src"],
-  "testRegex": "((\\.|/*.)(test))\\.js?$",
+  "testRegex": "((\\.|/*.)(test))\\.(ts|tsx)?$",
   "transform": {
     "^.+\\.[t|j]sx?$": "ts-jest"
   },
   "setupFilesAfterEnv": [
-    "<rootDir>config/setupTests.js"
+    "<rootDir>config/setupTests.ts"
   ],
   "testEnvironment": "jsdom"
 }

@@ -20,6 +20,8 @@ In order to use this template, you will first need to follow the following steps
 
 3. Enable Firebase Authentication and create a Firestore database.
 
+4. Enable email authentication in your Firebase Authentication config.
+
 ## Setup Logrocket
 
 1. Create a Logrocket project and add the client key to your Netlify environment variable config.

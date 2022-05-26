@@ -1,0 +1,18 @@
+{
+    "include": ["src/**/*"],
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "jsx": "react-jsx",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitAny": true,
+        "outDir": ".dist"
+    },
+    "roots": ["<rootDir>/src"],
+    "testRegex": "((\\.|/*.)(test))\\.ts$",
+    "modulePaths": ["<rootDir>/src"],
+    "setupFilesAfterEnv": ["<rootDir>/config/setupTests.ts"],
+    "transform": {
+        "^.+\\.ts?$": "ts-jest",
+    }
+}

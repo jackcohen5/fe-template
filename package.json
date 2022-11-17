@@ -82,7 +82,7 @@
     "reactfire": "^4.2.1",
     "redux": "^4.1.1",
     "redux-saga": "^1.1.1",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "^0.13.11",
     "styled-components": "^5.2.3"
   }
 }
